@@ -1,0 +1,1 @@
+alter table accounts_to_monitors change max_follows_per_hour reserved_api_hits INTEGER;

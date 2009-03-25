@@ -1,0 +1,44 @@
+=== Follow Me (A targeted twitter search) ===
+
+This is a rough application, it is not pretty or designed with all of the "pretty code" concepts in mind. It works and works well.
+
+It's a hybrid python / ruby on rails app that requires the following libraries.
+
+Python:
+mySQLDB
+sqlobject
+dateutil
+simplejson
+python_twitter
+
+Ruby on Rails:
+passenger
+rack
+mysql
+fastthread
+
+The ruby on rails part is the front end and is only an admin interface to the database. My recommendation is to run it on passenger/fuzion. It's a very simple active scaffold app.
+
+Create a database called "followme_production" and run schema and all of the migrations.
+**TODO** Number the damned migrations idiot
+
+There's a long running process called search.py. Feel free to daemonize this. I run it in a screen session to keep an eye on statistics. 
+
+You should add the following scripts on the cron.
+
+process_data.py (I recommend every hour)
+prune_database.py (I recommend every day at 2am)
+daily_unfollow.py (I recommend every day at midnight)
+
+User Interface (Basic instructions):
+Create a user by clicking create new. Add username / password. Search term is the terms you will target your follows for. Search pages is how many pages deep in the results to harvest users. Reserved api hits is the how many api requests you want available for this account every hour. The system will not go over that limit. Minimum friends is the minimum number of friends to follow the target. Min followers is the minimum number of followers to follow the target. Min tweets is the minimum number of tweets or updates the target has made to follow them. 
+
+Ratio is the difference from 100% for the followers to friends ratio. For example 5 friends and 5 followers is 100% or 1:1. 7 friends and 10 followers is 70 or roughly 1:3.
+
+Max ratio is the same as ratio only in the opposite direction of Friends to Followers and goes over 100.
+
+Number of days to follow back is the maximum number of days to allow before unfollowing someone that it has automatically followed if they do not follow you back. Paused pauses new follow activity, unfollowing is not affected.
+
+Clicking on Follower Queue will show you all the users the system has found:
+
+The only manual settings in here is "unfollowed" setting that to 1 will unfollow someone and ban them from the system.
