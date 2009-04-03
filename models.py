@@ -18,6 +18,8 @@ class User(SQLObject):
 	number_of_days_to_follow_back = IntCol()
 	paused = IntCol()
 	search_pages = IntCol()
+	max_follows_per_hour = IntCol()
+	search_language = StringCol()
 	
 class FollowQueue(SQLObject):
 	_connection = db_conn

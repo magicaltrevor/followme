@@ -3,11 +3,11 @@ import time
 from helpers import *
 import simplejson,urllib
 
-api = twitter.Api(username='yourtwittername',password='yourtwitterpassword')
+api = twitter.Api(username='izeadev',password='spatula5')
 SEARCH_BASE = 'http://search.twitter.com/search.json'
 
 def reset_api():
-	api.SetCredentials(username='yourtwittername',password='yourtwitterpassword')
+	api.SetCredentials(username='izeadev',password='spatula5')
 	
 def overLimitCheck(api,user):
 	rateinfo = api.GetRateLimitStatus()

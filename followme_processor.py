@@ -73,20 +73,25 @@ def process_manual_unfollow(user):
 				pass
 										
 def follow_friends(user, friends):
+	counter = 0
 	for friend in friends:
-		if is_friend_following_me(user, friend):
-			friend.followed_back_date = datetime.now()
-			friend.set()
+		counter += 1
+		if counter < user.max_follows_per_hour:
+			if is_friend_following_me(user, friend):
+				friend.followed_back_date = datetime.now()
+				friend.set()
+			else:
+				api.SetCredentials(username=user.username, password=user.password)
+				if overLimitCheck(api,user) == False:
+					try:
+						api.CreateFriendship(friend.username)
+						friend.followed_date = datetime.now()
+						friend.set()
+					except Exception, e:
+						friend.destroySelf()
+						pass
 		else:
-			api.SetCredentials(username=user.username, password=user.password)
-			if overLimitCheck(api,user) == False:
-				try:
-					api.CreateFriendship(friend.username)
-					friend.followed_date = datetime.now()
-					friend.set()
-				except Exception, e:
-					friend.destroySelf()
-					pass
+			break
 				
 def process_user(user):
 	friends = get_friends_from_queue(user)

@@ -15,7 +15,10 @@ def autofollowscan(user):
 	if user_pause_check(user) == False:
 		while count < user.search_pages:
 			count += 1
-			pages.append(search(user.search_term, 100, count, None))
+			if user.search_language:
+				pages.append(search(user.search_term, 100, count, None, lang=user.search_language))
+			else:
+				pages.append(search(user.search_term, 100, count, None))
 		for search_recs in pages:
 			for rec in search_recs['results']:
 				if ignore_duplicates(rec['from_user'], user) == False:
@@ -29,11 +32,11 @@ def autofollowscan(user):
 						pass
 				
 def user_pause_check(user):
+	api.SetCredentials(username=user.username, password=user.password)
+	user_info = api.GetUser(user.username)
+	new_stat = Stats(accounts_to_monitor_id=user.id,pass_date=datetime.now(),followers=int(user_info.followers_count),friends=int(user_info.friends_count))
+	new_stat.set()
 	if user.paused == 0:
-		api.SetCredentials(username=user.username, password=user.password)
-		user_info = api.GetUser(user.username)
-		new_stat = Stats(accounts_to_monitor_id=user.id,pass_date=datetime.now(),followers=int(user_info.followers_count),friends=int(user_info.friends_count))
-		new_stat.set()
 		if int(user_info.friends_count) - int(user_info.followers_count) > PAUSE_RATIO:
 			reset_api()
 			return True

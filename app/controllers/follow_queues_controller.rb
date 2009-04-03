@@ -1,4 +1,5 @@
 class FollowQueuesController < ApplicationController
+  before_filter :login_required
   layout "accounts"
   active_scaffold :follow_queue do |config|
     config.columns = [:username, :tweets, :friends, :followers, :followed_date, :followed_back_date, :unfollowed, :twitter_id, :rejected]
