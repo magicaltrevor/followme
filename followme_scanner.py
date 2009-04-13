@@ -2,6 +2,7 @@ import simplejson, urllib
 import time
 from models import *
 from helpers import *
+from BeautifulSoup import BeautifulSoup
 from twitter_functions import *
 from datetime import datetime
 PAUSE_RATIO = 10
@@ -32,19 +33,28 @@ def autofollowscan(user):
 						pass
 				
 def user_pause_check(user):
-	api.SetCredentials(username=user.username, password=user.password)
-	user_info = api.GetUser(user.username)
-	new_stat = Stats(accounts_to_monitor_id=user.id,pass_date=datetime.now(),followers=int(user_info.followers_count),friends=int(user_info.friends_count))
-	new_stat.set()
-	if user.paused == 0:
-		if int(user_info.friends_count) - int(user_info.followers_count) > PAUSE_RATIO:
-			reset_api()
-			return True
-		else:
-			reset_api()
-			return False
-	else:
-		return True
+        followers_count = 0
+        friends_count = 0
+        user_info = urllib.urlopen("http://twitter.com/%s" % user.username)
+        soup = BeautifulSoup(user_info)
+        spans = soup.findAll('span')
+        for i in spans:
+                if i.has_key('id'):
+                        if i['id'] == "follower_count":
+                                followers_count = int(i.contents[0])
+                        if i['id'] == "following_count":
+                                friends_count = int(i.contents[0])
+        new_stat = Stats(accounts_to_monitor_id=user.id,pass_date=datetime.now(),followers=followers_count,friends=friends_count)
+        new_stat.set()
+        if user.paused == 0:
+                if friends_count - followers_count > PAUSE_RATIO:
+                        reset_api()
+                        return True
+                else:
+                        reset_api()
+                        return False
+        else:
+                return True
 	
 
 def add_to_follow_queue(subject,user_id,rejected=False):
