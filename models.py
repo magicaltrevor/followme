@@ -20,6 +20,7 @@ class User(SQLObject):
 	search_pages = IntCol()
 	max_follows_per_hour = IntCol()
 	search_language = StringCol()
+	trigger_unfollow_event = BoolCol()
 	
 class FollowQueue(SQLObject):
 	_connection = db_conn
@@ -36,6 +37,7 @@ class FollowQueue(SQLObject):
 	unfollowed = IntCol()
 	twitter_id = IntCol()
 	rejected_date = DateTimeCol()
+	tweet = StringCol()
 	
 class Stats(SQLObject):
 	_connection = db_conn

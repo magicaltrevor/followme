@@ -26,9 +26,9 @@ def autofollowscan(user):
 					try:
 						my_subject, status = follow_screen(user, rec['from_user'])
 						if status:
-							add_to_follow_queue(my_subject, user.id)
+							add_to_follow_queue(my_subject, user.id, rec['text'])
 						else:
-							add_to_follow_queue(my_subject, user.id, rejected=True)
+							add_to_follow_queue(my_subject, user.id, rec['text'], rejected=True)
 					except Exception, e:
 						pass
 				
@@ -57,18 +57,24 @@ def user_pause_check(user):
                 return True
 	
 
-def add_to_follow_queue(subject,user_id,rejected=False):
+def add_to_follow_queue(subject,user_id, tweet, rejected=False, unfollowed=False):
 	if rejected == True:
-		new_queue = FollowQueue(username=str(subject.screen_name),accounts_to_monitor_id=user_id,followed_date=None,rejected=rejected,followers=int(subject.followers_count),friends=int(subject.friends_count),tweets=int(subject.statuses_count),followed_back_date=None,unfollowed=False,twitter_id=subject.id,rejected_date=datetime.now())
+		new_queue = FollowQueue(username=str(subject.screen_name),accounts_to_monitor_id=user_id,followed_date=None,rejected=rejected,followers=int(subject.followers_count),friends=int(subject.friends_count),tweets=int(subject.statuses_count),followed_back_date=None,unfollowed=unfollowed,twitter_id=subject.id,rejected_date=datetime.now(),tweet=None)
 	else:
-		new_queue = FollowQueue(username=str(subject.screen_name),accounts_to_monitor_id=user_id,followed_date=None,rejected=rejected,followers=int(subject.followers_count),friends=int(subject.friends_count),tweets=int(subject.statuses_count),followed_back_date=None,unfollowed=False,twitter_id=subject.id,rejected_date=None)
+		new_queue = FollowQueue(username=str(subject.screen_name),accounts_to_monitor_id=user_id,followed_date=None,rejected=rejected,followers=int(subject.followers_count),friends=int(subject.friends_count),tweets=int(subject.statuses_count),followed_back_date=None,unfollowed=unfollowed,twitter_id=subject.id,rejected_date=None,tweet=tweet)
 	new_queue.set()
 
-def ignore_duplicates(subject,user):
-	if FollowQueue.select((FollowQueue.q.username == subject) & (FollowQueue.q.accounts_to_monitor_id == user.id)).count() > 0:
-		return True
+def ignore_duplicates(subject,user,twitter_id=None):
+	if twitter_id == None:
+		if FollowQueue.select((FollowQueue.q.username == subject) & (FollowQueue.q.accounts_to_monitor_id == user.id)).count() > 0:
+			return True
+		else:
+			return False
 	else:
-		return False				
+		if FollowQueue.select((FollowQueue.q.twitter_id == twitter_id) & (FollowQueue.q.accounts_to_monitor_id == user.id)).count() > 0:				
+			return True
+		else:
+			return False
 
 def follow_screen(user, subject):
 	reset_api()

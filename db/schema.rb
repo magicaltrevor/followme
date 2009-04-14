@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090403123716) do
+ActiveRecord::Schema.define(:version => 20090414142238) do
 
   create_table "accounts_to_monitors", :force => true do |t|
     t.string  "username"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20090403123716) do
     t.integer "max_follows_per_hour",                       :default => 25
     t.integer "user_id"
     t.string  "search_language",               :limit => 2
+    t.boolean "trigger_unfollow_event",                     :default => false
   end
 
   add_index "accounts_to_monitors", ["paused"], :name => "paused_users"
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20090403123716) do
     t.integer  "unfollowed"
     t.integer  "twitter_id"
     t.datetime "rejected_date"
+    t.text     "tweet"
   end
 
   add_index "follow_queues", ["accounts_to_monitor_id"], :name => "accounts_to_monitor_id"

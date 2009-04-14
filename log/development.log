@@ -9849,3 +9849,2030 @@ Rendered _list_actions (3.0ms)
 Rendered _list_record (9.0ms)
 Rendered _list (29.7ms)
 Completed in 76ms (View: 47, DB: 7) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (23.4ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090402133146)
+Migrating to AddMaxFollowsPerHourToAccounts (20090402164508)
+Migrating to AssociateAccountsToUsers (20090402175020)
+Migrating to AddLanguageToAccounts (20090403123716)
+Migrating to AddUnfollowTrigger (20090414124501)
+  [4;35;1mSQL (119.5ms)[0m   [0mALTER TABLE `accounts_to_monitors` ADD `unfollow_event_trigger` tinyint(1)[0m
+  [4;36;1mSQL (7.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090414124501')[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (3.1ms)[0m   [0;1mSHOW FIELDS FROM `accounts_to_monitors`[0m
+  [4;35;1mSQL (2.8ms)[0m   [0mdescribe `accounts_to_monitors`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW KEYS FROM `accounts_to_monitors`[0m
+  [4;35;1mSQL (39.4ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+  [4;36;1mSQL (2.8ms)[0m   [0;1mdescribe `follow_queues`[0m
+  [4;35;1mSQL (3.2ms)[0m   [0mSHOW KEYS FROM `follow_queues`[0m
+  [4;36;1mSQL (3.2ms)[0m   [0;1mSHOW FIELDS FROM `stats`[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mdescribe `stats`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW KEYS FROM `stats`[0m
+  [4;35;1mSQL (14.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (3.6ms)[0m   [0;1mdescribe `users`[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.0ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#index (for 127.0.0.1 at 2009-04-14 10:14:00) [GET]
+Redirected to /session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 2ms (DB: 3) | 302 Found [http://localhost/]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-04-14 10:14:00) [GET]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+Rendering sessions/new
+Completed in 7ms (View: 5, DB: 0) | 200 OK [http://localhost/session/new]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2009-04-14 10:14:08) [POST]
+  Parameters: {"commit"=>"Log in", "authenticity_token"=>"fe415b40f7b0a4246cc4771d81f523dabd57f3fb", "login"=>"trevor", "password"=>"superspatula8"}
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+Cookie set: auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT
+  [4;36;1mUser Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (1.5ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`login` = 'trevor') LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+Cookie set: auth_token=; path=/
+Redirected to /
+Completed in 21ms (DB: 4) | 302 Found [http://localhost/session]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (2.3ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#index (for 127.0.0.1 at 2009-04-14 10:14:08) [GET]
+  [4;36;1mUser Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (1.7ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSQL (18.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM `accounts_to_monitors` WHERE (user_id = 2) [0m
+  [4;35;1mAccountsToMonitor Load (12.6ms)[0m   [0mSELECT `accounts_to_monitors`.* FROM `accounts_to_monitors` WHERE (user_id = 2) ORDER BY accounts_to_monitors.`id` ASC LIMIT 0, 15[0m
+Rendering template within layouts/accounts
+Rendering accounts/list
+Rendered _list_header (150.2ms)
+Rendered _list_column_headings (10.9ms)
+Rendered _messages (0.2ms)
+Rendered _list_actions (3.2ms)
+Rendered _list_record (9.9ms)
+Rendered _list (32.7ms)
+Completed in 310ms (View: 250, DB: 37) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.1ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#edit (for 127.0.0.1 at 2009-04-14 10:14:46) [GET]
+  Parameters: {"adapter"=>"_list_inline_adapter", "id"=>"1"}
+  [4;36;1mUser Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAccountsToMonitor Load (0.2ms)[0m   [0;1mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 1) [0m
+Rendered _form_attribute (0.6ms)
+Rendered _form_attribute (1.2ms)
+Rendered _form_attribute (0.8ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.9ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (1.9ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (1.8ms)
+Rendered _form_attribute (0.7ms)
+Rendered _form_attribute (0.7ms)
+Rendered _form (24.3ms)
+Rendered _update_form (33.7ms)
+Rendered _messages (0.6ms)
+Rendered _list_inline_adapter (3.4ms)
+Completed in 95ms (View: 5, DB: 0) | 200 OK [http://localhost/accounts/edit/1?_method=get&adapter=_list_inline_adapter]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mAccountsToMonitor Columns (3.2ms)[0m   [0;1mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#row (for 127.0.0.1 at 2009-04-14 10:14:57) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAccountsToMonitor Load (0.3ms)[0m   [0mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 1) [0m
+Rendered _list_actions (6.5ms)
+Rendered _list_record (15.4ms)
+Completed in 39ms (View: 18, DB: 6) | 200 OK [http://localhost/accounts/row/1?_method=get]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to AddUnfollowTrigger (20090414124501)
+  [4;35;1mSQL (20.3ms)[0m   [0mALTER TABLE `accounts_to_monitors` DROP `unfollow_event_trigger`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mDELETE FROM schema_migrations WHERE version = '20090414124501'[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (3.4ms)[0m   [0;1mSHOW FIELDS FROM `accounts_to_monitors`[0m
+  [4;35;1mSQL (3.4ms)[0m   [0mdescribe `accounts_to_monitors`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW KEYS FROM `accounts_to_monitors`[0m
+  [4;35;1mSQL (1.9ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+  [4;36;1mSQL (3.2ms)[0m   [0;1mdescribe `follow_queues`[0m
+  [4;35;1mSQL (3.6ms)[0m   [0mSHOW KEYS FROM `follow_queues`[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mSHOW FIELDS FROM `stats`[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mdescribe `stats`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mSHOW KEYS FROM `stats`[0m
+  [4;35;1mSQL (1.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (2.7ms)[0m   [0;1mdescribe `users`[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090402133146)
+Migrating to AddMaxFollowsPerHourToAccounts (20090402164508)
+Migrating to AssociateAccountsToUsers (20090402175020)
+Migrating to AddLanguageToAccounts (20090403123716)
+Migrating to AddUnfollowTrigger (20090414124501)
+  [4;35;1mSQL (15.0ms)[0m   [0mALTER TABLE `accounts_to_monitors` ADD `trigger_unfollow_event` tinyint(1) DEFAULT 0[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090414124501')[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (3.1ms)[0m   [0;1mSHOW FIELDS FROM `accounts_to_monitors`[0m
+  [4;35;1mSQL (3.8ms)[0m   [0mdescribe `accounts_to_monitors`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW KEYS FROM `accounts_to_monitors`[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+  [4;36;1mSQL (3.3ms)[0m   [0;1mdescribe `follow_queues`[0m
+  [4;35;1mSQL (4.6ms)[0m   [0mSHOW KEYS FROM `follow_queues`[0m
+  [4;36;1mSQL (1.7ms)[0m   [0;1mSHOW FIELDS FROM `stats`[0m
+  [4;35;1mSQL (2.6ms)[0m   [0mdescribe `stats`[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mSHOW KEYS FROM `stats`[0m
+  [4;35;1mSQL (1.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (3.2ms)[0m   [0;1mdescribe `users`[0m
+  [4;35;1mSQL (1.5ms)[0m   [0mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (2.6ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#index (for 127.0.0.1 at 2009-04-14 10:18:02) [GET]
+  [4;36;1mUser Columns (2.1ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (1.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT count(*) AS count_all FROM `accounts_to_monitors` WHERE (user_id = 2) [0m
+  [4;35;1mAccountsToMonitor Load (0.3ms)[0m   [0mSELECT `accounts_to_monitors`.* FROM `accounts_to_monitors` WHERE (user_id = 2) ORDER BY accounts_to_monitors.`id` ASC LIMIT 0, 15[0m
+Rendering template within layouts/accounts
+Rendering accounts/list
+Rendered _list_header (5.7ms)
+Rendered _list_column_headings (17.2ms)
+Rendered _messages (3.0ms)
+
+
+ActionView::TemplateError (undefined method `unfollow_event_trigger' for #<AccountsToMonitor:0x4a49f58>) on line #11 of vendor/plugins/active_scaffold/frontends/default/views/_list_record.rhtml:
+8: 
+9: <tr class="record <%= tr_class %>" id="<%= element_row_id(:action => :list, :id => record.id) %>">
+10:   <% active_scaffold_config.list.columns.each do |column| %>
+11:     <% column_value = get_column_value(record, column) -%>
+12: 
+13:     <td class="<%= column_class(column, column_value) %>" >
+14:       <%= render_list_column(column_value, column, record) %>
+
+    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/attribute_methods.rb:260:in `method_missing'
+    vendor/plugins/active_scaffold/lib/active_scaffold/helpers/list_column_helpers.rb:21:in `send'
+    vendor/plugins/active_scaffold/lib/active_scaffold/helpers/list_column_helpers.rb:21:in `get_column_value'
+    vendor/plugins/active_scaffold/frontends/default/views/_list_record.rhtml:11
+    vendor/plugins/active_scaffold/lib/active_scaffold/data_structures/action_columns.rb:73:in `each'
+    vendor/plugins/active_scaffold/lib/active_scaffold/data_structures/action_columns.rb:60:in `each'
+    vendor/plugins/active_scaffold/frontends/default/views/_list_record.rhtml:10
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:20:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:19:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:45:in `render_partial'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/partials.rb:184:in `render_partial_collection'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/partials.rb:179:in `map'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/partials.rb:179:in `render_partial_collection'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/partials.rb:150:in `render_partial'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:258:in `render_without_active_scaffold'
+    vendor/plugins/active_scaffold/lib/extensions/action_view_rendering.rb:61:in `render'
+    vendor/plugins/active_scaffold/frontends/default/views/_list.rhtml:24
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:20:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:19:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:45:in `render_partial'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/partials.rb:152:in `render_partial'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:258:in `render_without_active_scaffold'
+    vendor/plugins/active_scaffold/lib/extensions/action_view_rendering.rb:61:in `render'
+    vendor/plugins/active_scaffold/frontends/default/views/list.rhtml:28
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:256:in `render_without_active_scaffold'
+    vendor/plugins/active_scaffold/lib/extensions/action_view_rendering.rb:61:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:367:in `_render_with_layout'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:254:in `render_without_active_scaffold'
+    vendor/plugins/active_scaffold/lib/extensions/action_view_rendering.rb:61:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1174:in `render_for_file'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:905:in `render_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render_without_active_scaffold'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render_without_active_scaffold'
+    vendor/plugins/active_scaffold/lib/extensions/action_controller_rendering.rb:13:in `render'
+    vendor/plugins/active_scaffold/lib/active_scaffold/actions/list.rb:39:in `list'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:135:in `call'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:135:in `custom'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:164:in `call'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:164:in `respond'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:158:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:158:in `respond'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:107:in `respond_to'
+    vendor/plugins/active_scaffold/lib/active_scaffold/actions/list.rb:37:in `list'
+    vendor/plugins/active_scaffold/lib/active_scaffold/actions/list.rb:8:in `index'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:78:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:618:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:271:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load_without_new_constant_marking'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/mongrel.rb:64
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (56.1ms)
+Rendered /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (2.0ms)
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.3ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#index (for 127.0.0.1 at 2009-04-14 10:19:08) [GET]
+  [4;36;1mUser Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM `accounts_to_monitors` WHERE (user_id = 2) [0m
+  [4;35;1mAccountsToMonitor Load (0.2ms)[0m   [0mSELECT `accounts_to_monitors`.* FROM `accounts_to_monitors` WHERE (user_id = 2) ORDER BY accounts_to_monitors.`id` ASC LIMIT 0, 15[0m
+Rendering template within layouts/accounts
+Rendering accounts/list
+Rendered _list_header (4.4ms)
+Rendered _list_column_headings (12.0ms)
+Rendered _messages (0.2ms)
+Rendered _list_actions (2.8ms)
+Rendered _list_record (8.9ms)
+Rendered _list (29.5ms)
+Completed in 70ms (View: 45, DB: 6) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.4ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#nested (for 127.0.0.1 at 2009-04-14 10:21:49) [GET]
+  Parameters: {"associations"=>"follow_queues", "adapter"=>"_list_inline_adapter", "id"=>"1"}
+  [4;36;1mUser Columns (2.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAccountsToMonitor Load (0.3ms)[0m   [0;1mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 1) [0m
+  [4;35;1mFollowQueue Columns (2.9ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+DEPRECATION WARNING: render_component_as_string is deprecated and will be removed from Rails 2.3 (Please install render_component plugin from http://github.com/rails/render_component/tree/master). (called from __send__ at /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/components.rb:68)
+  [4;36;1mSQL (2.8ms)[0m   [0;1mSHOW TABLES[0m
+Start rendering component ({:params=>{:eid=>"979d9d570905fb531332d87c7d0c213b", :nested=>true, :parent_column=>"follow_queues", :parent_model=>AccountsToMonitor(id: integer, username: string, password: string, min_tweets: integer, min_followers: integer, min_friends: integer, search_term: string, ratio: integer, max_ratio: integer, reserved_api_hits: integer, number_of_days_to_follow_back: integer, paused: integer, search_pages: integer, max_follows_per_hour: integer, user_id: integer, search_language: string, trigger_unfollow_event: boolean)}, :action=>"table", :controller=>"follow_queues"}): 
+
+
+Processing FollowQueuesController#table (for 127.0.0.1 at 2009-04-14 10:21:49) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>true, "id"=>nil, "parent_model"=>AccountsToMonitor(id: integer, username: string, password: string, min_tweets: integer, min_followers: integer, min_friends: integer, search_term: string, ratio: integer, max_ratio: integer, reserved_api_hits: integer, number_of_days_to_follow_back: integer, paused: integer, search_pages: integer, max_follows_per_hour: integer, user_id: integer, search_language: string, trigger_unfollow_event: boolean)}
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSQL (36.0ms)[0m   [0mSELECT count(*) AS count_all FROM `follow_queues` WHERE (follow_queues.accounts_to_monitor_id = '1' AND rejected = 0) [0m
+  [4;36;1mFollowQueue Load (1.3ms)[0m   [0;1mSELECT `follow_queues`.* FROM `follow_queues` WHERE (follow_queues.accounts_to_monitor_id = '1' AND rejected = 0) ORDER BY follow_queues.`id` ASC LIMIT 0, 15[0m
+Rendering follow_queues/list
+Rendered _list_header (1.9ms)
+Rendered _list_column_headings (11.3ms)
+Rendered _messages (0.2ms)
+Rendered _list_actions (3.2ms)
+Rendered _list_record (91.4ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (5.3ms)
+Rendered _list_actions (1.6ms)
+Rendered _list_record (5.0ms)
+Rendered _list_actions (1.6ms)
+Rendered _list_record (5.0ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (5.0ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (5.0ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (4.8ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (4.8ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (4.9ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (4.4ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (4.4ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (4.5ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (4.5ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (4.5ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (4.5ms)
+Rendered _list_pagination_links (5.3ms)
+Rendered _list (187.7ms)
+Completed in 267ms (View: 198, DB: 43) | 200 OK [http://localhost/accounts/nested/1?_method=get&associations=follow_queues&adapter=_list_inline_adapter]
+
+
+End of component rendering
+DEPRECATION WARNING: The binding argument of #concat is no longer needed.  Please remove it from your views and helpers.. (called from _run_rhtml_vendor47plugins47active_scaffold47frontends47default47views47_nested46rhtml_locals_nested_object at /Users/trevor/dev/hybrid/apps/followme/vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:40)
+Rendered _nested (315.9ms)
+Rendered _messages (0.2ms)
+Rendered _list_inline_adapter (3.1ms)
+Completed in 356ms (View: 5, DB: 0) | 200 OK [http://localhost/accounts/nested/1?_method=get&associations=follow_queues&adapter=_list_inline_adapter]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090402133146)
+Migrating to AddMaxFollowsPerHourToAccounts (20090402164508)
+Migrating to AssociateAccountsToUsers (20090402175020)
+Migrating to AddLanguageToAccounts (20090403123716)
+Migrating to AddUnfollowTrigger (20090414124501)
+Migrating to AddTweetToFollowerQueues (20090414142238)
+  [4;35;1mSQL (60.5ms)[0m   [0mALTER TABLE `follow_queues` ADD `tweet` text[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090414142238')[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mSHOW FIELDS FROM `accounts_to_monitors`[0m
+  [4;35;1mSQL (3.2ms)[0m   [0mdescribe `accounts_to_monitors`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mSHOW KEYS FROM `accounts_to_monitors`[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mdescribe `follow_queues`[0m
+  [4;35;1mSQL (3.4ms)[0m   [0mSHOW KEYS FROM `follow_queues`[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mSHOW FIELDS FROM `stats`[0m
+  [4;35;1mSQL (1.9ms)[0m   [0mdescribe `stats`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW KEYS FROM `stats`[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mdescribe `users`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (4.0ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#index (for 127.0.0.1 at 2009-04-14 10:46:08) [GET]
+  [4;36;1mUser Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM `accounts_to_monitors` WHERE (user_id = 2) [0m
+  [4;35;1mAccountsToMonitor Load (0.3ms)[0m   [0mSELECT `accounts_to_monitors`.* FROM `accounts_to_monitors` WHERE (user_id = 2) ORDER BY accounts_to_monitors.`id` ASC LIMIT 0, 15[0m
+Rendering template within layouts/accounts
+Rendering accounts/list
+Rendered _list_header (4.5ms)
+Rendered _list_column_headings (12.1ms)
+Rendered _messages (0.2ms)
+Rendered _list_actions (2.5ms)
+Rendered _list_record (9.1ms)
+Rendered _list (29.9ms)
+Completed in 71ms (View: 46, DB: 7) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.2ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#nested (for 127.0.0.1 at 2009-04-14 10:46:11) [GET]
+  Parameters: {"associations"=>"follow_queues", "adapter"=>"_list_inline_adapter", "id"=>"1"}
+  [4;36;1mUser Columns (2.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAccountsToMonitor Load (0.2ms)[0m   [0;1mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 1) [0m
+  [4;35;1mFollowQueue Columns (2.8ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+DEPRECATION WARNING: render_component_as_string is deprecated and will be removed from Rails 2.3 (Please install render_component plugin from http://github.com/rails/render_component/tree/master). (called from __send__ at /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/components.rb:68)
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+Start rendering component ({:params=>{:eid=>"979d9d570905fb531332d87c7d0c213b", :nested=>true, :parent_column=>"follow_queues", :parent_model=>AccountsToMonitor(id: integer, username: string, password: string, min_tweets: integer, min_followers: integer, min_friends: integer, search_term: string, ratio: integer, max_ratio: integer, reserved_api_hits: integer, number_of_days_to_follow_back: integer, paused: integer, search_pages: integer, max_follows_per_hour: integer, user_id: integer, search_language: string, trigger_unfollow_event: boolean)}, :action=>"table", :controller=>"follow_queues"}): 
+
+
+Processing FollowQueuesController#table (for 127.0.0.1 at 2009-04-14 10:46:11) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>true, "id"=>nil, "parent_model"=>AccountsToMonitor(id: integer, username: string, password: string, min_tweets: integer, min_followers: integer, min_friends: integer, search_term: string, ratio: integer, max_ratio: integer, reserved_api_hits: integer, number_of_days_to_follow_back: integer, paused: integer, search_pages: integer, max_follows_per_hour: integer, user_id: integer, search_language: string, trigger_unfollow_event: boolean)}
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSELECT count(*) AS count_all FROM `follow_queues` WHERE (follow_queues.accounts_to_monitor_id = '1' AND rejected = 0) [0m
+  [4;36;1mFollowQueue Load (0.5ms)[0m   [0;1mSELECT `follow_queues`.* FROM `follow_queues` WHERE (follow_queues.accounts_to_monitor_id = '1' AND rejected = 0) ORDER BY follow_queues.`id` ASC LIMIT 0, 15[0m
+Rendering follow_queues/list
+Rendered _list_header (1.9ms)
+Rendered _list_column_headings (9.2ms)
+Rendered _messages (0.3ms)
+Rendered _list_actions (2.1ms)
+Rendered _list_record (10.0ms)
+Rendered _list_actions (1.7ms)
+Rendered _list_record (5.2ms)
+Rendered _list_actions (1.6ms)
+Rendered _list_record (4.8ms)
+Rendered _list_actions (1.9ms)
+Rendered _list_record (5.2ms)
+Rendered _list (43.6ms)
+Completed in 129ms (View: 56, DB: 5) | 200 OK [http://localhost/accounts/nested/1?_method=get&associations=follow_queues&adapter=_list_inline_adapter]
+
+
+End of component rendering
+DEPRECATION WARNING: The binding argument of #concat is no longer needed.  Please remove it from your views and helpers.. (called from _run_rhtml_vendor47plugins47active_scaffold47frontends47default47views47_nested46rhtml_locals_nested_object at /Users/trevor/dev/hybrid/apps/followme/vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:40)
+Rendered _nested (165.9ms)
+Rendered _messages (0.2ms)
+Rendered _list_inline_adapter (2.8ms)
+Completed in 190ms (View: 5, DB: 0) | 200 OK [http://localhost/accounts/nested/1?_method=get&associations=follow_queues&adapter=_list_inline_adapter]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mFollowQueue Columns (2.9ms)[0m   [0;1mSHOW FIELDS FROM `follow_queues`[0m
+
+
+Processing FollowQueuesController#nested (for 127.0.0.1 at 2009-04-14 10:46:14) [GET]
+  Parameters: {"associations"=>"tweet", "eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>"true", "adapter"=>"_list_inline_adapter", "id"=>"7", "parent_model"=>"AccountsToMonitor"}
+  [4;35;1mUser Columns (576.1ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (1.5ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mFollowQueue Load (0.2ms)[0m   [0mSELECT * FROM `follow_queues` WHERE (`follow_queues`.`id` = 7) [0m
+
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.reverse) on line #24 of vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:
+21:           }
+22:         }
+23:       else
+24:         @constraints = { association.reverse => parent_id }
+25:       end
+26: 
+27:       # generate the customized label
+
+    vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:24
+    vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:11:in `each'
+    vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:11
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:20:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:19:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:45:in `render_partial'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/partials.rb:152:in `render_partial'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:258:in `render_without_active_scaffold'
+    vendor/plugins/active_scaffold/lib/extensions/action_view_rendering.rb:61:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:926:in `render_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render_without_active_scaffold'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render_without_active_scaffold'
+    vendor/plugins/active_scaffold/lib/extensions/action_controller_rendering.rb:13:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:948:in `render_to_string'
+    vendor/plugins/active_scaffold/lib/extensions/action_controller_rendering.rb:9:in `render'
+    vendor/plugins/active_scaffold/lib/active_scaffold/actions/nested.rb:18:in `nested'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:135:in `call'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:135:in `custom'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:164:in `call'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:164:in `respond'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:158:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:158:in `respond'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:107:in `respond_to'
+    vendor/plugins/active_scaffold/lib/active_scaffold/actions/nested.rb:16:in `nested'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:78:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:618:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:271:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load_without_new_constant_marking'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/mongrel.rb:64
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (39.6ms)
+Rendered /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (2.3ms)
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.2ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#index (for 127.0.0.1 at 2009-04-14 10:49:02) [GET]
+  [4;36;1mUser Columns (9.2ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (1.8ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSQL (2.5ms)[0m   [0;1mSELECT count(*) AS count_all FROM `accounts_to_monitors` WHERE (user_id = 2) [0m
+  [4;35;1mAccountsToMonitor Load (0.6ms)[0m   [0mSELECT `accounts_to_monitors`.* FROM `accounts_to_monitors` WHERE (user_id = 2) ORDER BY accounts_to_monitors.`id` ASC LIMIT 0, 15[0m
+Rendering template within layouts/accounts
+Rendering accounts/list
+Rendered _list_header (4.5ms)
+Rendered _list_column_headings (17.3ms)
+Rendered _messages (0.2ms)
+Rendered _list_actions (2.6ms)
+Rendered _list_record (10.2ms)
+Rendered _list (35.5ms)
+Completed in 95ms (View: 53, DB: 17) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.3ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#nested (for 127.0.0.1 at 2009-04-14 10:49:05) [GET]
+  Parameters: {"associations"=>"follow_queues", "adapter"=>"_list_inline_adapter", "id"=>"1"}
+  [4;36;1mUser Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAccountsToMonitor Load (0.3ms)[0m   [0;1mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 1) [0m
+
+
+ActionView::TemplateError (/Users/trevor/dev/hybrid/apps/followme/app/controllers/follow_queues_controller.rb:7: odd number list for Hash
+    columns[:username].set_link('nested', :parameters => {:tweet})
+                                                                 ^) on line #28 of vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:
+25:       end
+26: 
+27:       # generate the customized label
+28:       @label = as_(:nested_for_model, :nested_model => active_scaffold_config_for(association.klass).label, :parent_model => format_value(@record.to_label))
+29: 
+30:       begin
+31:         controller = active_scaffold_controller_for(association.klass)
+
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:382:in `load_without_new_constant_marking'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:382:in `load_file'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:381:in `load_file'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:256:in `require_or_load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:427:in `load_missing_constant'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:77:in `const_missing'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:89:in `const_missing'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/inflector.rb:352:in `constantize'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/inflector.rb:351:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/inflector.rb:351:in `constantize'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/string/inflections.rb:162:in `constantize'
+    vendor/plugins/active_scaffold/lib/active_scaffold.rb:114:in `active_scaffold_controller_for'
+    vendor/plugins/active_scaffold/lib/active_scaffold.rb:112:in `each'
+    vendor/plugins/active_scaffold/lib/active_scaffold.rb:112:in `active_scaffold_controller_for'
+    vendor/plugins/active_scaffold/lib/active_scaffold.rb:96:in `active_scaffold_config_for'
+    vendor/plugins/active_scaffold/lib/active_scaffold/helpers/view_helpers.rb:24:in `active_scaffold_config_for'
+    vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:28
+    vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:11:in `each'
+    vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:11
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:20:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:19:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:45:in `render_partial'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/partials.rb:152:in `render_partial'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:258:in `render_without_active_scaffold'
+    vendor/plugins/active_scaffold/lib/extensions/action_view_rendering.rb:61:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:926:in `render_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render_without_active_scaffold'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render_without_active_scaffold'
+    vendor/plugins/active_scaffold/lib/extensions/action_controller_rendering.rb:13:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:948:in `render_to_string'
+    vendor/plugins/active_scaffold/lib/extensions/action_controller_rendering.rb:9:in `render'
+    vendor/plugins/active_scaffold/lib/active_scaffold/actions/nested.rb:18:in `nested'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:135:in `call'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:135:in `custom'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:164:in `call'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:164:in `respond'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:158:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:158:in `respond'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:107:in `respond_to'
+    vendor/plugins/active_scaffold/lib/active_scaffold/actions/nested.rb:16:in `nested'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:78:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:618:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:271:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load_without_new_constant_marking'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/mongrel.rb:64
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (145.4ms)
+Rendered /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (2.0ms)
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.2ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#index (for 127.0.0.1 at 2009-04-14 10:56:58) [GET]
+  [4;36;1mUser Columns (2.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (1.5ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM `accounts_to_monitors` WHERE (user_id = 2) [0m
+  [4;35;1mAccountsToMonitor Load (0.3ms)[0m   [0mSELECT `accounts_to_monitors`.* FROM `accounts_to_monitors` WHERE (user_id = 2) ORDER BY accounts_to_monitors.`id` ASC LIMIT 0, 15[0m
+Rendering template within layouts/accounts
+Rendering accounts/list
+Rendered _list_header (4.4ms)
+Rendered _list_column_headings (11.6ms)
+Rendered _messages (0.2ms)
+Rendered _list_actions (2.8ms)
+Rendered _list_record (11.6ms)
+Rendered _list (34.2ms)
+Completed in 78ms (View: 50, DB: 7) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#nested (for 127.0.0.1 at 2009-04-14 10:57:00) [GET]
+  Parameters: {"associations"=>"follow_queues", "adapter"=>"_list_inline_adapter", "id"=>"1"}
+  [4;36;1mUser Columns (2.3ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (1.8ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAccountsToMonitor Load (0.3ms)[0m   [0;1mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 1) [0m
+  [4;35;1mFollowQueue Columns (2.6ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+DEPRECATION WARNING: render_component_as_string is deprecated and will be removed from Rails 2.3 (Please install render_component plugin from http://github.com/rails/render_component/tree/master). (called from __send__ at /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/components.rb:68)
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+Start rendering component ({:params=>{:eid=>"979d9d570905fb531332d87c7d0c213b", :nested=>true, :parent_column=>"follow_queues", :parent_model=>AccountsToMonitor(id: integer, username: string, password: string, min_tweets: integer, min_followers: integer, min_friends: integer, search_term: string, ratio: integer, max_ratio: integer, reserved_api_hits: integer, number_of_days_to_follow_back: integer, paused: integer, search_pages: integer, max_follows_per_hour: integer, user_id: integer, search_language: string, trigger_unfollow_event: boolean)}, :action=>"table", :controller=>"follow_queues"}): 
+
+
+Processing FollowQueuesController#table (for 127.0.0.1 at 2009-04-14 10:57:00) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>true, "id"=>nil, "parent_model"=>AccountsToMonitor(id: integer, username: string, password: string, min_tweets: integer, min_followers: integer, min_friends: integer, search_term: string, ratio: integer, max_ratio: integer, reserved_api_hits: integer, number_of_days_to_follow_back: integer, paused: integer, search_pages: integer, max_follows_per_hour: integer, user_id: integer, search_language: string, trigger_unfollow_event: boolean)}
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT count(*) AS count_all FROM `follow_queues` WHERE (follow_queues.accounts_to_monitor_id = '1' AND rejected = 0) [0m
+  [4;36;1mFollowQueue Load (0.4ms)[0m   [0;1mSELECT `follow_queues`.* FROM `follow_queues` WHERE (follow_queues.accounts_to_monitor_id = '1' AND rejected = 0) ORDER BY follow_queues.`id` ASC LIMIT 0, 15[0m
+Rendering follow_queues/list
+Rendered _list_header (2.0ms)
+Rendered _list_column_headings (8.0ms)
+Rendered _messages (0.2ms)
+Rendered _list_actions (2.3ms)
+Rendered _list_record (6.9ms)
+Rendered _list_actions (1.8ms)
+Rendered _list_record (4.7ms)
+Rendered _list_actions (1.8ms)
+Rendered _list_record (4.7ms)
+Rendered _list_actions (2.3ms)
+Rendered _list_record (5.6ms)
+Rendered _list (38.0ms)
+Completed in 115ms (View: 48, DB: 4) | 200 OK [http://localhost/accounts/nested/1?_method=get&associations=follow_queues&adapter=_list_inline_adapter]
+
+
+End of component rendering
+DEPRECATION WARNING: The binding argument of #concat is no longer needed.  Please remove it from your views and helpers.. (called from _run_rhtml_vendor47plugins47active_scaffold47frontends47default47views47_nested46rhtml_locals_nested_object at /Users/trevor/dev/hybrid/apps/followme/vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:40)
+Rendered _nested (152.1ms)
+Rendered _messages (0.2ms)
+Rendered _list_inline_adapter (2.6ms)
+Completed in 179ms (View: 4, DB: 0) | 200 OK [http://localhost/accounts/nested/1?_method=get&associations=follow_queues&adapter=_list_inline_adapter]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mFollowQueue Columns (2.9ms)[0m   [0;1mSHOW FIELDS FROM `follow_queues`[0m
+
+
+Processing FollowQueuesController#nested (for 127.0.0.1 at 2009-04-14 10:57:03) [GET]
+  Parameters: {"associations"=>"tweet", "eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>"true", "adapter"=>"_list_inline_adapter", "id"=>"7", "parent_model"=>"AccountsToMonitor"}
+  [4;35;1mUser Columns (2.3ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mFollowQueue Load (0.2ms)[0m   [0mSELECT * FROM `follow_queues` WHERE (`follow_queues`.`id` = 7) [0m
+
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.reverse) on line #24 of vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:
+21:           }
+22:         }
+23:       else
+24:         @constraints = { association.reverse => parent_id }
+25:       end
+26: 
+27:       # generate the customized label
+
+    vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:24
+    vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:11:in `each'
+    vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:11
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:20:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:19:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:45:in `render_partial'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/partials.rb:152:in `render_partial'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:258:in `render_without_active_scaffold'
+    vendor/plugins/active_scaffold/lib/extensions/action_view_rendering.rb:61:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:926:in `render_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render_without_active_scaffold'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render_without_active_scaffold'
+    vendor/plugins/active_scaffold/lib/extensions/action_controller_rendering.rb:13:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:948:in `render_to_string'
+    vendor/plugins/active_scaffold/lib/extensions/action_controller_rendering.rb:9:in `render'
+    vendor/plugins/active_scaffold/lib/active_scaffold/actions/nested.rb:18:in `nested'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:135:in `call'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:135:in `custom'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:164:in `call'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:164:in `respond'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:158:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:158:in `respond'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:107:in `respond_to'
+    vendor/plugins/active_scaffold/lib/active_scaffold/actions/nested.rb:16:in `nested'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:78:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:618:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:271:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load_without_new_constant_marking'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/mongrel.rb:64
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (41.8ms)
+Rendered /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (1.9ms)
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.2ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#index (for 127.0.0.1 at 2009-04-14 11:17:55) [GET]
+  [4;36;1mUser Columns (2.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM `accounts_to_monitors` WHERE (user_id = 2) [0m
+  [4;35;1mAccountsToMonitor Load (0.3ms)[0m   [0mSELECT `accounts_to_monitors`.* FROM `accounts_to_monitors` WHERE (user_id = 2) ORDER BY accounts_to_monitors.`id` ASC LIMIT 0, 15[0m
+Rendering template within layouts/accounts
+Rendering accounts/list
+Rendered _list_header (10.1ms)
+Rendered _list_column_headings (11.7ms)
+Rendered _messages (0.2ms)
+Rendered _list_actions (2.4ms)
+Rendered _list_record (8.6ms)
+Rendered _list (29.1ms)
+Completed in 82ms (View: 53, DB: 7) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.3ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#nested (for 127.0.0.1 at 2009-04-14 11:17:57) [GET]
+  Parameters: {"associations"=>"follow_queues", "adapter"=>"_list_inline_adapter", "id"=>"1"}
+  [4;36;1mUser Columns (2.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (1.5ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAccountsToMonitor Load (0.3ms)[0m   [0;1mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 1) [0m
+  [4;35;1mFollowQueue Columns (2.6ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+DEPRECATION WARNING: render_component_as_string is deprecated and will be removed from Rails 2.3 (Please install render_component plugin from http://github.com/rails/render_component/tree/master). (called from __send__ at /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/components.rb:68)
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+Start rendering component ({:params=>{:eid=>"979d9d570905fb531332d87c7d0c213b", :nested=>true, :parent_column=>"follow_queues", :parent_model=>AccountsToMonitor(id: integer, username: string, password: string, min_tweets: integer, min_followers: integer, min_friends: integer, search_term: string, ratio: integer, max_ratio: integer, reserved_api_hits: integer, number_of_days_to_follow_back: integer, paused: integer, search_pages: integer, max_follows_per_hour: integer, user_id: integer, search_language: string, trigger_unfollow_event: boolean)}, :action=>"table", :controller=>"follow_queues"}): 
+
+
+Processing FollowQueuesController#table (for 127.0.0.1 at 2009-04-14 11:17:57) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>true, "id"=>nil, "parent_model"=>AccountsToMonitor(id: integer, username: string, password: string, min_tweets: integer, min_followers: integer, min_friends: integer, search_term: string, ratio: integer, max_ratio: integer, reserved_api_hits: integer, number_of_days_to_follow_back: integer, paused: integer, search_pages: integer, max_follows_per_hour: integer, user_id: integer, search_language: string, trigger_unfollow_event: boolean)}
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT count(*) AS count_all FROM `follow_queues` WHERE (follow_queues.accounts_to_monitor_id = '1' AND rejected = 0) [0m
+  [4;36;1mFollowQueue Load (0.4ms)[0m   [0;1mSELECT `follow_queues`.* FROM `follow_queues` WHERE (follow_queues.accounts_to_monitor_id = '1' AND rejected = 0) ORDER BY follow_queues.`id` ASC LIMIT 0, 15[0m
+Rendering follow_queues/list
+Rendered _list_header (2.4ms)
+Rendered _list_column_headings (9.5ms)
+Rendered _messages (0.3ms)
+Rendered _list_actions (2.0ms)
+Rendered _list_record (8.2ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (4.6ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (5.0ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (4.6ms)
+Rendered _list (40.8ms)
+Completed in 121ms (View: 53, DB: 4) | 200 OK [http://localhost/accounts/nested/1?_method=get&associations=follow_queues&adapter=_list_inline_adapter]
+
+
+End of component rendering
+DEPRECATION WARNING: The binding argument of #concat is no longer needed.  Please remove it from your views and helpers.. (called from _run_rhtml_vendor47plugins47active_scaffold47frontends47default47views47_nested46rhtml_locals_nested_object at /Users/trevor/dev/hybrid/apps/followme/vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:40)
+Rendered _nested (158.0ms)
+Rendered _messages (0.2ms)
+Rendered _list_inline_adapter (2.5ms)
+Completed in 186ms (View: 5, DB: 0) | 200 OK [http://localhost/accounts/nested/1?_method=get&associations=follow_queues&adapter=_list_inline_adapter]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mFollowQueue Columns (2.5ms)[0m   [0;1mSHOW FIELDS FROM `follow_queues`[0m
+
+
+Processing FollowQueuesController#show (for 127.0.0.1 at 2009-04-14 11:18:05) [GET]
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>"true", "adapter"=>"_list_inline_adapter", "id"=>"7", "parent_model"=>"AccountsToMonitor"}
+  [4;35;1mUser Columns (2.1ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mFollowQueue Load (0.2ms)[0m   [0mSELECT * FROM `follow_queues` WHERE (`follow_queues`.`id` = 7) [0m
+Rendered _show_columns (4.3ms)
+Rendered _show (13.0ms)
+Rendered _messages (0.2ms)
+Rendered _list_inline_adapter (90.6ms)
+Completed in 172ms (View: 94, DB: 0) | 200 OK [http://localhost/follow_queues/show/7?_method=get&eid=979d9d570905fb531332d87c7d0c213b&nested=true&parent_column=follow_queues&parent_model=AccountsToMonitor&adapter=_list_inline_adapter]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mFollowQueue Columns (188.5ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+
+
+Processing FollowQueuesController#row (for 127.0.0.1 at 2009-04-14 11:18:09) [GET]
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>"true", "id"=>"7", "parent_model"=>"AccountsToMonitor"}
+  [4;36;1mUser Columns (2.3ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mFollowQueue Load (0.3ms)[0m   [0;1mSELECT * FROM `follow_queues` WHERE (`follow_queues`.`id` = 7) [0m
+Rendered _list_actions (4.7ms)
+Rendered _list_record (11.5ms)
+Completed in 33ms (View: 14, DB: 192) | 200 OK [http://localhost/follow_queues/row/7?_method=get&eid=979d9d570905fb531332d87c7d0c213b&nested=true&parent_column=follow_queues&parent_model=AccountsToMonitor]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mFollowQueue Columns (2.9ms)[0m   [0;1mSHOW FIELDS FROM `follow_queues`[0m
+
+
+Processing FollowQueuesController#show (for 127.0.0.1 at 2009-04-14 11:18:10) [GET]
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>"true", "adapter"=>"_list_inline_adapter", "id"=>"8", "parent_model"=>"AccountsToMonitor"}
+  [4;35;1mUser Columns (2.4ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mFollowQueue Load (0.2ms)[0m   [0mSELECT * FROM `follow_queues` WHERE (`follow_queues`.`id` = 8) [0m
+Rendered _show_columns (3.1ms)
+Rendered _show (8.7ms)
+Rendered _messages (0.2ms)
+Rendered _list_inline_adapter (2.4ms)
+Completed in 32ms (View: 4, DB: 0) | 200 OK [http://localhost/follow_queues/show/8?_method=get&eid=979d9d570905fb531332d87c7d0c213b&nested=true&parent_column=follow_queues&parent_model=AccountsToMonitor&adapter=_list_inline_adapter]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mFollowQueue Columns (2.7ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+
+
+Processing FollowQueuesController#row (for 127.0.0.1 at 2009-04-14 11:18:15) [GET]
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>"true", "id"=>"8", "parent_model"=>"AccountsToMonitor"}
+  [4;36;1mUser Columns (2.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mFollowQueue Load (0.2ms)[0m   [0;1mSELECT * FROM `follow_queues` WHERE (`follow_queues`.`id` = 8) [0m
+Rendered _list_actions (4.1ms)
+Rendered _list_record (10.8ms)
+Completed in 30ms (View: 14, DB: 6) | 200 OK [http://localhost/follow_queues/row/8?_method=get&eid=979d9d570905fb531332d87c7d0c213b&nested=true&parent_column=follow_queues&parent_model=AccountsToMonitor]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.3ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#index (for 127.0.0.1 at 2009-04-14 11:19:31) [GET]
+  [4;36;1mUser Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (1.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM `accounts_to_monitors` WHERE (user_id = 2) [0m
+  [4;35;1mAccountsToMonitor Load (0.3ms)[0m   [0mSELECT `accounts_to_monitors`.* FROM `accounts_to_monitors` WHERE (user_id = 2) ORDER BY accounts_to_monitors.`id` ASC LIMIT 0, 15[0m
+Rendering template within layouts/accounts
+Rendering accounts/list
+Rendered _list_header (5.3ms)
+Rendered _list_column_headings (18.4ms)
+Rendered _messages (0.2ms)
+Rendered _list_actions (2.6ms)
+Rendered _list_record (17.4ms)
+Rendered _list (52.4ms)
+Completed in 122ms (View: 90, DB: 7) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.2ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#nested (for 127.0.0.1 at 2009-04-14 11:19:58) [GET]
+  Parameters: {"associations"=>"follow_queues", "adapter"=>"_list_inline_adapter", "id"=>"1"}
+  [4;36;1mUser Columns (2.3ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAccountsToMonitor Load (0.3ms)[0m   [0;1mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 1) [0m
+  [4;35;1mFollowQueue Columns (2.0ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+DEPRECATION WARNING: render_component_as_string is deprecated and will be removed from Rails 2.3 (Please install render_component plugin from http://github.com/rails/render_component/tree/master). (called from __send__ at /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/components.rb:68)
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+Start rendering component ({:params=>{:eid=>"979d9d570905fb531332d87c7d0c213b", :nested=>true, :parent_column=>"follow_queues", :parent_model=>AccountsToMonitor(id: integer, username: string, password: string, min_tweets: integer, min_followers: integer, min_friends: integer, search_term: string, ratio: integer, max_ratio: integer, reserved_api_hits: integer, number_of_days_to_follow_back: integer, paused: integer, search_pages: integer, max_follows_per_hour: integer, user_id: integer, search_language: string, trigger_unfollow_event: boolean)}, :action=>"table", :controller=>"follow_queues"}): 
+
+
+Processing FollowQueuesController#table (for 127.0.0.1 at 2009-04-14 11:19:58) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>true, "id"=>nil, "parent_model"=>AccountsToMonitor(id: integer, username: string, password: string, min_tweets: integer, min_followers: integer, min_friends: integer, search_term: string, ratio: integer, max_ratio: integer, reserved_api_hits: integer, number_of_days_to_follow_back: integer, paused: integer, search_pages: integer, max_follows_per_hour: integer, user_id: integer, search_language: string, trigger_unfollow_event: boolean)}
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSELECT count(*) AS count_all FROM `follow_queues` WHERE (follow_queues.accounts_to_monitor_id = '1' AND rejected = 0) [0m
+  [4;36;1mFollowQueue Load (0.6ms)[0m   [0;1mSELECT `follow_queues`.* FROM `follow_queues` WHERE (follow_queues.accounts_to_monitor_id = '1' AND rejected = 0) ORDER BY follow_queues.`id` ASC LIMIT 0, 15[0m
+Rendering follow_queues/list
+Rendered _list_header (1.7ms)
+Rendered _list_column_headings (8.7ms)
+Rendered _messages (0.2ms)
+Rendered _list_actions (2.4ms)
+Rendered _list_record (7.7ms)
+Rendered _list_actions (1.7ms)
+Rendered _list_record (5.1ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (4.7ms)
+Rendered _list_actions (1.6ms)
+Rendered _list_record (4.8ms)
+Rendered _list (38.4ms)
+Completed in 123ms (View: 49, DB: 4) | 200 OK [http://localhost/accounts/nested/1?_method=get&associations=follow_queues&adapter=_list_inline_adapter]
+
+
+End of component rendering
+DEPRECATION WARNING: The binding argument of #concat is no longer needed.  Please remove it from your views and helpers.. (called from _run_rhtml_vendor47plugins47active_scaffold47frontends47default47views47_nested46rhtml_locals_nested_object at /Users/trevor/dev/hybrid/apps/followme/vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:40)
+Rendered _nested (157.0ms)
+Rendered _messages (0.2ms)
+Rendered _list_inline_adapter (2.7ms)
+Completed in 183ms (View: 4, DB: 0) | 200 OK [http://localhost/accounts/nested/1?_method=get&associations=follow_queues&adapter=_list_inline_adapter]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mFollowQueue Columns (3.1ms)[0m   [0;1mSHOW FIELDS FROM `follow_queues`[0m
+
+
+Processing FollowQueuesController#show (for 127.0.0.1 at 2009-04-14 11:20:00) [GET]
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>"true", "adapter"=>"_list_inline_adapter", "id"=>"22", "parent_model"=>"AccountsToMonitor"}
+  [4;35;1mUser Columns (2.4ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mFollowQueue Load (0.4ms)[0m   [0mSELECT * FROM `follow_queues` WHERE (`follow_queues`.`id` = 22) [0m
+Rendered _show_columns (90.8ms)
+Rendered _show (96.9ms)
+Rendered _messages (0.2ms)
+Rendered _list_inline_adapter (2.5ms)
+Completed in 121ms (View: 4, DB: 0) | 200 OK [http://localhost/follow_queues/show/22?_method=get&eid=979d9d570905fb531332d87c7d0c213b&nested=true&parent_column=follow_queues&parent_model=AccountsToMonitor&adapter=_list_inline_adapter]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mFollowQueue Columns (2.9ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+
+
+Processing FollowQueuesController#row (for 127.0.0.1 at 2009-04-14 11:20:11) [GET]
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>"true", "id"=>"22", "parent_model"=>"AccountsToMonitor"}
+  [4;36;1mUser Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mFollowQueue Load (0.2ms)[0m   [0;1mSELECT * FROM `follow_queues` WHERE (`follow_queues`.`id` = 22) [0m
+Rendered _list_actions (4.3ms)
+Rendered _list_record (10.4ms)
+Completed in 27ms (View: 13, DB: 5) | 200 OK [http://localhost/follow_queues/row/22?_method=get&eid=979d9d570905fb531332d87c7d0c213b&nested=true&parent_column=follow_queues&parent_model=AccountsToMonitor]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mFollowQueue Columns (2.8ms)[0m   [0;1mSHOW FIELDS FROM `follow_queues`[0m
+
+
+Processing FollowQueuesController#edit (for 127.0.0.1 at 2009-04-14 11:20:50) [GET]
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>"true", "adapter"=>"_list_inline_adapter", "id"=>"8", "parent_model"=>"AccountsToMonitor"}
+  [4;35;1mUser Columns (2.2ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mFollowQueue Load (0.3ms)[0m   [0mSELECT * FROM `follow_queues` WHERE (`follow_queues`.`id` = 8) [0m
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (27.2ms)
+Rendered _form_attribute (3.2ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form (41.5ms)
+Rendered _update_form (48.6ms)
+Rendered _messages (0.2ms)
+Rendered _list_inline_adapter (2.4ms)
+Completed in 73ms (View: 4, DB: 0) | 200 OK [http://localhost/follow_queues/edit/8?_method=get&eid=979d9d570905fb531332d87c7d0c213b&nested=true&parent_column=follow_queues&parent_model=AccountsToMonitor&adapter=_list_inline_adapter]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mFollowQueue Columns (3.0ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+
+
+Processing FollowQueuesController#row (for 127.0.0.1 at 2009-04-14 11:20:54) [GET]
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>"true", "id"=>"8", "parent_model"=>"AccountsToMonitor"}
+  [4;36;1mUser Columns (2.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mFollowQueue Load (0.3ms)[0m   [0;1mSELECT * FROM `follow_queues` WHERE (`follow_queues`.`id` = 8) [0m
+Rendered _list_actions (4.3ms)
+Rendered _list_record (11.1ms)
+Completed in 32ms (View: 14, DB: 6) | 200 OK [http://localhost/follow_queues/row/8?_method=get&eid=979d9d570905fb531332d87c7d0c213b&nested=true&parent_column=follow_queues&parent_model=AccountsToMonitor]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mFollowQueue Columns (2.8ms)[0m   [0;1mSHOW FIELDS FROM `follow_queues`[0m
+
+
+Processing FollowQueuesController#edit (for 127.0.0.1 at 2009-04-14 11:20:55) [GET]
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>"true", "adapter"=>"_list_inline_adapter", "id"=>"14", "parent_model"=>"AccountsToMonitor"}
+  [4;35;1mUser Columns (2.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mFollowQueue Load (0.3ms)[0m   [0mSELECT * FROM `follow_queues` WHERE (`follow_queues`.`id` = 14) [0m
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (2.8ms)
+Rendered _form_attribute (2.9ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form (17.4ms)
+Rendered _update_form (24.8ms)
+Rendered _messages (0.2ms)
+Rendered _list_inline_adapter (2.9ms)
+Completed in 53ms (View: 4, DB: 0) | 200 OK [http://localhost/follow_queues/edit/14?_method=get&eid=979d9d570905fb531332d87c7d0c213b&nested=true&parent_column=follow_queues&parent_model=AccountsToMonitor&adapter=_list_inline_adapter]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mFollowQueue Columns (2.6ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+
+
+Processing FollowQueuesController#row (for 127.0.0.1 at 2009-04-14 11:20:58) [GET]
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>"true", "id"=>"14", "parent_model"=>"AccountsToMonitor"}
+  [4;36;1mUser Columns (2.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mFollowQueue Load (0.2ms)[0m   [0;1mSELECT * FROM `follow_queues` WHERE (`follow_queues`.`id` = 14) [0m
+Rendered _list_actions (5.1ms)
+Rendered _list_record (12.1ms)
+Completed in 32ms (View: 15, DB: 6) | 200 OK [http://localhost/follow_queues/row/14?_method=get&eid=979d9d570905fb531332d87c7d0c213b&nested=true&parent_column=follow_queues&parent_model=AccountsToMonitor]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mFollowQueue Columns (3.1ms)[0m   [0;1mSHOW FIELDS FROM `follow_queues`[0m
+
+
+Processing FollowQueuesController#edit (for 127.0.0.1 at 2009-04-14 11:21:00) [GET]
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>"true", "adapter"=>"_list_inline_adapter", "id"=>"14", "parent_model"=>"AccountsToMonitor"}
+  [4;35;1mUser Columns (2.2ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mFollowQueue Load (0.3ms)[0m   [0mSELECT * FROM `follow_queues` WHERE (`follow_queues`.`id` = 14) [0m
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (3.6ms)
+Rendered _form_attribute (3.4ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form (18.9ms)
+Rendered _update_form (26.9ms)
+Rendered _messages (0.2ms)
+Rendered _list_inline_adapter (2.6ms)
+Completed in 54ms (View: 6, DB: 0) | 200 OK [http://localhost/follow_queues/edit/14?_method=get&eid=979d9d570905fb531332d87c7d0c213b&nested=true&parent_column=follow_queues&parent_model=AccountsToMonitor&adapter=_list_inline_adapter]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mFollowQueue Columns (2.9ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+
+
+Processing FollowQueuesController#row (for 127.0.0.1 at 2009-04-14 11:21:02) [GET]
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>"true", "id"=>"14", "parent_model"=>"AccountsToMonitor"}
+  [4;36;1mUser Columns (2.2ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mFollowQueue Load (0.3ms)[0m   [0;1mSELECT * FROM `follow_queues` WHERE (`follow_queues`.`id` = 14) [0m
+Rendered _list_actions (5.0ms)
+Rendered _list_record (12.6ms)
+Completed in 33ms (View: 16, DB: 6) | 200 OK [http://localhost/follow_queues/row/14?_method=get&eid=979d9d570905fb531332d87c7d0c213b&nested=true&parent_column=follow_queues&parent_model=AccountsToMonitor]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mFollowQueue Columns (2.9ms)[0m   [0;1mSHOW FIELDS FROM `follow_queues`[0m
+
+
+Processing FollowQueuesController#show (for 127.0.0.1 at 2009-04-14 11:21:03) [GET]
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>"true", "adapter"=>"_list_inline_adapter", "id"=>"14", "parent_model"=>"AccountsToMonitor"}
+  [4;35;1mUser Columns (2.4ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mFollowQueue Load (0.4ms)[0m   [0mSELECT * FROM `follow_queues` WHERE (`follow_queues`.`id` = 14) [0m
+Rendered _show_columns (3.1ms)
+Rendered _show (10.2ms)
+Rendered _messages (0.2ms)
+Rendered _list_inline_adapter (2.5ms)
+Completed in 125ms (View: 4, DB: 0) | 200 OK [http://localhost/follow_queues/show/14?_method=get&eid=979d9d570905fb531332d87c7d0c213b&nested=true&parent_column=follow_queues&parent_model=AccountsToMonitor&adapter=_list_inline_adapter]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mFollowQueue Columns (3.2ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+
+
+Processing FollowQueuesController#row (for 127.0.0.1 at 2009-04-14 11:21:06) [GET]
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>"true", "id"=>"14", "parent_model"=>"AccountsToMonitor"}
+  [4;36;1mUser Columns (2.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mFollowQueue Load (0.3ms)[0m   [0;1mSELECT * FROM `follow_queues` WHERE (`follow_queues`.`id` = 14) [0m
+Rendered _list_actions (4.2ms)
+Rendered _list_record (10.8ms)
+Completed in 31ms (View: 14, DB: 7) | 200 OK [http://localhost/follow_queues/row/14?_method=get&eid=979d9d570905fb531332d87c7d0c213b&nested=true&parent_column=follow_queues&parent_model=AccountsToMonitor]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.2ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#index (for 127.0.0.1 at 2009-04-14 11:23:39) [GET]
+  [4;36;1mUser Columns (2.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM `accounts_to_monitors` WHERE (user_id = 2) [0m
+  [4;35;1mAccountsToMonitor Load (0.3ms)[0m   [0mSELECT `accounts_to_monitors`.* FROM `accounts_to_monitors` WHERE (user_id = 2) ORDER BY accounts_to_monitors.`id` ASC LIMIT 0, 15[0m
+Rendering template within layouts/accounts
+Rendering accounts/list
+Rendered _list_header (6.2ms)
+Rendered _list_column_headings (14.9ms)
+Rendered _messages (0.2ms)
+Rendered _list_actions (2.6ms)
+Rendered _list_record (8.5ms)
+Rendered _list (32.3ms)
+Completed in 85ms (View: 53, DB: 7) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.3ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#nested (for 127.0.0.1 at 2009-04-14 11:23:42) [GET]
+  Parameters: {"associations"=>"follow_queues", "adapter"=>"_list_inline_adapter", "id"=>"1"}
+  [4;36;1mUser Columns (2.3ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAccountsToMonitor Load (0.3ms)[0m   [0;1mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 1) [0m
+
+
+ActionView::TemplateError (/Users/trevor/dev/hybrid/apps/followme/app/models/follow_queue.rb:6: syntax error, unexpected $end, expecting kEND) on line #24 of vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:
+21:           }
+22:         }
+23:       else
+24:         @constraints = { association.reverse => parent_id }
+25:       end
+26: 
+27:       # generate the customized label
+
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:382:in `load_without_new_constant_marking'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:382:in `load_file'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:381:in `load_file'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:256:in `require_or_load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:427:in `load_missing_constant'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:77:in `const_missing'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:89:in `const_missing'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/inflector.rb:352:in `constantize'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/inflector.rb:351:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/inflector.rb:351:in `constantize'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/string/inflections.rb:162:in `constantize'
+    vendor/plugins/active_scaffold/lib/extensions/reverse_associations.rb:11:in `reverse'
+    vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:24
+    vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:11:in `each'
+    vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:11
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:20:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:19:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:45:in `render_partial'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/partials.rb:152:in `render_partial'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:258:in `render_without_active_scaffold'
+    vendor/plugins/active_scaffold/lib/extensions/action_view_rendering.rb:61:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:926:in `render_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render_without_active_scaffold'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render_without_active_scaffold'
+    vendor/plugins/active_scaffold/lib/extensions/action_controller_rendering.rb:13:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:948:in `render_to_string'
+    vendor/plugins/active_scaffold/lib/extensions/action_controller_rendering.rb:9:in `render'
+    vendor/plugins/active_scaffold/lib/active_scaffold/actions/nested.rb:18:in `nested'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:135:in `call'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:135:in `custom'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:164:in `call'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:164:in `respond'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:158:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:158:in `respond'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:107:in `respond_to'
+    vendor/plugins/active_scaffold/lib/active_scaffold/actions/nested.rb:16:in `nested'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:78:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:618:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:271:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load_without_new_constant_marking'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/mongrel.rb:64
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (60.5ms)
+Rendered /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (97.4ms)
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.2ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#index (for 127.0.0.1 at 2009-04-14 11:24:03) [GET]
+  [4;36;1mUser Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM `accounts_to_monitors` WHERE (user_id = 2) [0m
+  [4;35;1mAccountsToMonitor Load (0.2ms)[0m   [0mSELECT `accounts_to_monitors`.* FROM `accounts_to_monitors` WHERE (user_id = 2) ORDER BY accounts_to_monitors.`id` ASC LIMIT 0, 15[0m
+Rendering template within layouts/accounts
+Rendering accounts/list
+Rendered _list_header (4.4ms)
+Rendered _list_column_headings (12.7ms)
+Rendered _messages (0.2ms)
+Rendered _list_actions (2.6ms)
+Rendered _list_record (15.2ms)
+Rendered _list (36.6ms)
+Completed in 79ms (View: 55, DB: 6) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.2ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#nested (for 127.0.0.1 at 2009-04-14 11:24:05) [GET]
+  Parameters: {"associations"=>"follow_queues", "adapter"=>"_list_inline_adapter", "id"=>"1"}
+  [4;36;1mUser Columns (2.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (1.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAccountsToMonitor Load (0.4ms)[0m   [0;1mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 1) [0m
+  [4;35;1mFollowQueue Columns (2.7ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+DEPRECATION WARNING: render_component_as_string is deprecated and will be removed from Rails 2.3 (Please install render_component plugin from http://github.com/rails/render_component/tree/master). (called from __send__ at /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/components.rb:68)
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW TABLES[0m
+Start rendering component ({:params=>{:eid=>"979d9d570905fb531332d87c7d0c213b", :nested=>true, :parent_column=>"follow_queues", :parent_model=>AccountsToMonitor(id: integer, username: string, password: string, min_tweets: integer, min_followers: integer, min_friends: integer, search_term: string, ratio: integer, max_ratio: integer, reserved_api_hits: integer, number_of_days_to_follow_back: integer, paused: integer, search_pages: integer, max_follows_per_hour: integer, user_id: integer, search_language: string, trigger_unfollow_event: boolean)}, :action=>"table", :controller=>"follow_queues"}): 
+
+
+Processing FollowQueuesController#table (for 127.0.0.1 at 2009-04-14 11:24:05) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>true, "id"=>nil, "parent_model"=>AccountsToMonitor(id: integer, username: string, password: string, min_tweets: integer, min_followers: integer, min_friends: integer, search_term: string, ratio: integer, max_ratio: integer, reserved_api_hits: integer, number_of_days_to_follow_back: integer, paused: integer, search_pages: integer, max_follows_per_hour: integer, user_id: integer, search_language: string, trigger_unfollow_event: boolean)}
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT count(*) AS count_all FROM `follow_queues` WHERE (follow_queues.accounts_to_monitor_id = '1' AND rejected = 0) [0m
+  [4;36;1mFollowQueue Load (0.4ms)[0m   [0;1mSELECT `follow_queues`.* FROM `follow_queues` WHERE (follow_queues.accounts_to_monitor_id = '1' AND rejected = 0) ORDER BY follow_queues.`id` ASC LIMIT 0, 15[0m
+Rendering follow_queues/list
+Rendered _list_header (2.2ms)
+Rendered _list_column_headings (9.3ms)
+Rendered _messages (0.2ms)
+Rendered _list_actions (2.4ms)
+Rendered _list_record (8.2ms)
+Rendered _list_actions (2.1ms)
+Rendered _list_record (5.6ms)
+Rendered _list_actions (1.6ms)
+Rendered _list_record (4.5ms)
+Rendered _list_actions (1.9ms)
+Rendered _list_record (4.8ms)
+Rendered _list (40.3ms)
+Completed in 115ms (View: 51, DB: 5) | 200 OK [http://localhost/accounts/nested/1?_method=get&associations=follow_queues&adapter=_list_inline_adapter]
+
+
+End of component rendering
+DEPRECATION WARNING: The binding argument of #concat is no longer needed.  Please remove it from your views and helpers.. (called from _run_rhtml_vendor47plugins47active_scaffold47frontends47default47views47_nested46rhtml_locals_nested_object at /Users/trevor/dev/hybrid/apps/followme/vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:40)
+Rendered _nested (151.7ms)
+Rendered _messages (0.2ms)
+Rendered _list_inline_adapter (2.7ms)
+Completed in 179ms (View: 4, DB: 0) | 200 OK [http://localhost/accounts/nested/1?_method=get&associations=follow_queues&adapter=_list_inline_adapter]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mAccountsToMonitor Columns (3.2ms)[0m   [0;1mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#row (for 127.0.0.1 at 2009-04-14 11:24:30) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAccountsToMonitor Load (0.2ms)[0m   [0mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 1) [0m
+Rendered _list_actions (7.1ms)
+Rendered _list_record (16.1ms)
+Completed in 127ms (View: 111, DB: 5) | 200 OK [http://localhost/accounts/row/1?_method=get]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.2ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#nested (for 127.0.0.1 at 2009-04-14 11:24:33) [GET]
+  Parameters: {"associations"=>"follow_queues", "adapter"=>"_list_inline_adapter", "id"=>"1"}
+  [4;36;1mUser Columns (2.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAccountsToMonitor Load (0.3ms)[0m   [0;1mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 1) [0m
+  [4;35;1mFollowQueue Columns (2.7ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+DEPRECATION WARNING: render_component_as_string is deprecated and will be removed from Rails 2.3 (Please install render_component plugin from http://github.com/rails/render_component/tree/master). (called from __send__ at /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/components.rb:68)
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+Start rendering component ({:params=>{:eid=>"979d9d570905fb531332d87c7d0c213b", :nested=>true, :parent_column=>"follow_queues", :parent_model=>AccountsToMonitor(id: integer, username: string, password: string, min_tweets: integer, min_followers: integer, min_friends: integer, search_term: string, ratio: integer, max_ratio: integer, reserved_api_hits: integer, number_of_days_to_follow_back: integer, paused: integer, search_pages: integer, max_follows_per_hour: integer, user_id: integer, search_language: string, trigger_unfollow_event: boolean)}, :action=>"table", :controller=>"follow_queues"}): 
+
+
+Processing FollowQueuesController#table (for 127.0.0.1 at 2009-04-14 11:24:33) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>true, "id"=>nil, "parent_model"=>AccountsToMonitor(id: integer, username: string, password: string, min_tweets: integer, min_followers: integer, min_friends: integer, search_term: string, ratio: integer, max_ratio: integer, reserved_api_hits: integer, number_of_days_to_follow_back: integer, paused: integer, search_pages: integer, max_follows_per_hour: integer, user_id: integer, search_language: string, trigger_unfollow_event: boolean)}
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT count(*) AS count_all FROM `follow_queues` WHERE (follow_queues.accounts_to_monitor_id = '1' AND rejected = 0) [0m
+  [4;36;1mFollowQueue Load (0.4ms)[0m   [0;1mSELECT `follow_queues`.* FROM `follow_queues` WHERE (follow_queues.accounts_to_monitor_id = '1' AND rejected = 0) ORDER BY follow_queues.`id` ASC LIMIT 0, 15[0m
+Rendering follow_queues/list
+Rendered _list_header (1.4ms)
+Rendered _list_column_headings (7.9ms)
+Rendered _messages (0.3ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (5.8ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (5.3ms)
+Rendered _list_actions (1.6ms)
+Rendered _list_record (4.7ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (4.8ms)
+Rendered _list (36.0ms)
+Completed in 116ms (View: 45, DB: 4) | 200 OK [http://localhost/accounts/nested/1?_method=get&associations=follow_queues&adapter=_list_inline_adapter]
+
+
+End of component rendering
+DEPRECATION WARNING: The binding argument of #concat is no longer needed.  Please remove it from your views and helpers.. (called from _run_rhtml_vendor47plugins47active_scaffold47frontends47default47views47_nested46rhtml_locals_nested_object at /Users/trevor/dev/hybrid/apps/followme/vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:40)
+Rendered _nested (154.6ms)
+Rendered _messages (0.2ms)
+Rendered _list_inline_adapter (3.2ms)
+Completed in 180ms (View: 5, DB: 0) | 200 OK [http://localhost/accounts/nested/1?_method=get&associations=follow_queues&adapter=_list_inline_adapter]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mFollowQueue Columns (2.4ms)[0m   [0;1mSHOW FIELDS FROM `follow_queues`[0m
+
+
+Processing FollowQueuesController#show (for 127.0.0.1 at 2009-04-14 11:24:40) [GET]
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>"true", "adapter"=>"_list_inline_adapter", "id"=>"7", "parent_model"=>"AccountsToMonitor"}
+  [4;35;1mUser Columns (2.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (1.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mFollowQueue Load (0.3ms)[0m   [0mSELECT * FROM `follow_queues` WHERE (`follow_queues`.`id` = 7) [0m
+Rendered _show_columns (2.8ms)
+Rendered _show (8.7ms)
+Rendered _messages (0.2ms)
+Rendered _list_inline_adapter (2.2ms)
+Completed in 35ms (View: 4, DB: 0) | 200 OK [http://localhost/follow_queues/show/7?_method=get&eid=979d9d570905fb531332d87c7d0c213b&nested=true&parent_column=follow_queues&parent_model=AccountsToMonitor&adapter=_list_inline_adapter]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mFollowQueue Columns (3.1ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+
+
+Processing FollowQueuesController#row (for 127.0.0.1 at 2009-04-14 11:24:47) [GET]
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>"true", "id"=>"7", "parent_model"=>"AccountsToMonitor"}
+  [4;36;1mUser Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mFollowQueue Load (0.2ms)[0m   [0;1mSELECT * FROM `follow_queues` WHERE (`follow_queues`.`id` = 7) [0m
+Rendered _list_actions (3.9ms)
+Rendered _list_record (8.9ms)
+Completed in 26ms (View: 11, DB: 5) | 200 OK [http://localhost/follow_queues/row/7?_method=get&eid=979d9d570905fb531332d87c7d0c213b&nested=true&parent_column=follow_queues&parent_model=AccountsToMonitor]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mAccountsToMonitor Columns (3.2ms)[0m   [0;1mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#row (for 127.0.0.1 at 2009-04-14 11:24:48) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAccountsToMonitor Load (0.2ms)[0m   [0mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 1) [0m
+Rendered _list_actions (4.2ms)
+Rendered _list_record (11.0ms)
+Completed in 28ms (View: 13, DB: 6) | 200 OK [http://localhost/accounts/row/1?_method=get]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.2ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#index (for 127.0.0.1 at 2009-04-14 14:00:57) [GET]
+  [4;36;1mUser Columns (2.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM `accounts_to_monitors` WHERE (user_id = 2) [0m
+  [4;35;1mAccountsToMonitor Load (0.3ms)[0m   [0mSELECT `accounts_to_monitors`.* FROM `accounts_to_monitors` WHERE (user_id = 2) ORDER BY accounts_to_monitors.`id` ASC LIMIT 0, 15[0m
+Rendering template within layouts/accounts
+Rendering accounts/list
+Rendered _list_header (5.8ms)
+Rendered _list_column_headings (11.6ms)
+Rendered _messages (0.2ms)
+Rendered _list_actions (2.6ms)
+Rendered _list_record (14.0ms)
+Rendered _list (36.8ms)
+Completed in 85ms (View: 56, DB: 7) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (2.6ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#nested (for 127.0.0.1 at 2009-04-14 14:01:02) [GET]
+  Parameters: {"associations"=>"follow_queues", "adapter"=>"_list_inline_adapter", "id"=>"1"}
+  [4;36;1mUser Columns (2.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAccountsToMonitor Load (0.3ms)[0m   [0;1mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 1) [0m
+  [4;35;1mFollowQueue Columns (2.9ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+DEPRECATION WARNING: render_component_as_string is deprecated and will be removed from Rails 2.3 (Please install render_component plugin from http://github.com/rails/render_component/tree/master). (called from __send__ at /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/components.rb:68)
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+Start rendering component ({:params=>{:eid=>"979d9d570905fb531332d87c7d0c213b", :nested=>true, :parent_column=>"follow_queues", :parent_model=>AccountsToMonitor(id: integer, username: string, password: string, min_tweets: integer, min_followers: integer, min_friends: integer, search_term: string, ratio: integer, max_ratio: integer, reserved_api_hits: integer, number_of_days_to_follow_back: integer, paused: integer, search_pages: integer, max_follows_per_hour: integer, user_id: integer, search_language: string, trigger_unfollow_event: boolean)}, :action=>"table", :controller=>"follow_queues"}): 
+
+
+Processing FollowQueuesController#table (for 127.0.0.1 at 2009-04-14 14:01:02) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>true, "id"=>nil, "parent_model"=>AccountsToMonitor(id: integer, username: string, password: string, min_tweets: integer, min_followers: integer, min_friends: integer, search_term: string, ratio: integer, max_ratio: integer, reserved_api_hits: integer, number_of_days_to_follow_back: integer, paused: integer, search_pages: integer, max_follows_per_hour: integer, user_id: integer, search_language: string, trigger_unfollow_event: boolean)}
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT count(*) AS count_all FROM `follow_queues` WHERE (follow_queues.accounts_to_monitor_id = '1' AND rejected = 0) [0m
+  [4;36;1mFollowQueue Load (0.4ms)[0m   [0;1mSELECT `follow_queues`.* FROM `follow_queues` WHERE (follow_queues.accounts_to_monitor_id = '1' AND rejected = 0) ORDER BY follow_queues.`id` ASC LIMIT 0, 15[0m
+Rendering follow_queues/list
+Rendered _list_header (1.9ms)
+Rendered _list_column_headings (8.3ms)
+Rendered _messages (0.2ms)
+Rendered _list_actions (2.0ms)
+Rendered follow_queues/_list_record (7.0ms)
+Rendered _list_actions (1.5ms)
+Rendered follow_queues/_list_record (4.4ms)
+Rendered _list_actions (1.4ms)
+Rendered follow_queues/_list_record (4.3ms)
+Rendered _list_actions (1.5ms)
+Rendered follow_queues/_list_record (6.9ms)
+Rendered _list (38.2ms)
+Completed in 120ms (View: 49, DB: 4) | 200 OK [http://localhost/accounts/nested/1?_method=get&associations=follow_queues&adapter=_list_inline_adapter]
+
+
+End of component rendering
+DEPRECATION WARNING: The binding argument of #concat is no longer needed.  Please remove it from your views and helpers.. (called from _run_rhtml_vendor47plugins47active_scaffold47frontends47default47views47_nested46rhtml_locals_nested_object at /Users/trevor/dev/hybrid/apps/followme/vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:40)
+Rendered _nested (156.7ms)
+Rendered _messages (0.2ms)
+Rendered _list_inline_adapter (4.6ms)
+Completed in 184ms (View: 6, DB: 0) | 200 OK [http://localhost/accounts/nested/1?_method=get&associations=follow_queues&adapter=_list_inline_adapter]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.6ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#index (for 127.0.0.1 at 2009-04-14 14:03:32) [GET]
+  [4;36;1mUser Columns (2.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (1.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM `accounts_to_monitors` WHERE (user_id = 2) [0m
+  [4;35;1mAccountsToMonitor Load (0.3ms)[0m   [0mSELECT `accounts_to_monitors`.* FROM `accounts_to_monitors` WHERE (user_id = 2) ORDER BY accounts_to_monitors.`id` ASC LIMIT 0, 15[0m
+Rendering template within layouts/accounts
+Rendering accounts/list
+Rendered _list_header (6.1ms)
+Rendered _list_column_headings (12.3ms)
+Rendered _messages (0.2ms)
+Rendered _list_actions (2.5ms)
+Rendered _list_record (8.7ms)
+Rendered _list (30.0ms)
+Completed in 80ms (View: 50, DB: 8) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.2ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#nested (for 127.0.0.1 at 2009-04-14 14:03:34) [GET]
+  Parameters: {"associations"=>"follow_queues", "adapter"=>"_list_inline_adapter", "id"=>"1"}
+  [4;36;1mUser Columns (2.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAccountsToMonitor Load (0.3ms)[0m   [0;1mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 1) [0m
+  [4;35;1mFollowQueue Columns (2.0ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+DEPRECATION WARNING: render_component_as_string is deprecated and will be removed from Rails 2.3 (Please install render_component plugin from http://github.com/rails/render_component/tree/master). (called from __send__ at /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/components.rb:68)
+  [4;36;1mSQL (2.0ms)[0m   [0;1mSHOW TABLES[0m
+Start rendering component ({:params=>{:eid=>"979d9d570905fb531332d87c7d0c213b", :nested=>true, :parent_column=>"follow_queues", :parent_model=>AccountsToMonitor(id: integer, username: string, password: string, min_tweets: integer, min_followers: integer, min_friends: integer, search_term: string, ratio: integer, max_ratio: integer, reserved_api_hits: integer, number_of_days_to_follow_back: integer, paused: integer, search_pages: integer, max_follows_per_hour: integer, user_id: integer, search_language: string, trigger_unfollow_event: boolean)}, :action=>"table", :controller=>"follow_queues"}): 
+
+
+Processing FollowQueuesController#table (for 127.0.0.1 at 2009-04-14 14:03:34) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  Parameters: {"eid"=>"979d9d570905fb531332d87c7d0c213b", "parent_column"=>"follow_queues", "nested"=>true, "id"=>nil, "parent_model"=>AccountsToMonitor(id: integer, username: string, password: string, min_tweets: integer, min_followers: integer, min_friends: integer, search_term: string, ratio: integer, max_ratio: integer, reserved_api_hits: integer, number_of_days_to_follow_back: integer, paused: integer, search_pages: integer, max_follows_per_hour: integer, user_id: integer, search_language: string, trigger_unfollow_event: boolean)}
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSELECT count(*) AS count_all FROM `follow_queues` WHERE (follow_queues.accounts_to_monitor_id = '1' AND rejected = 0) [0m
+  [4;36;1mFollowQueue Load (0.5ms)[0m   [0;1mSELECT `follow_queues`.* FROM `follow_queues` WHERE (follow_queues.accounts_to_monitor_id = '1' AND rejected = 0) ORDER BY follow_queues.`id` ASC LIMIT 0, 15[0m
+Rendering follow_queues/list
+Rendered _list_header (1.8ms)
+Rendered _list_column_headings (9.8ms)
+Rendered _messages (0.2ms)
+Rendered _list_actions (2.1ms)
+Rendered follow_queues/_list_record (6.9ms)
+Rendered _list_actions (1.5ms)
+Rendered follow_queues/_list_record (5.1ms)
+Rendered _list_actions (2.1ms)
+Rendered follow_queues/_list_record (5.0ms)
+Rendered _list_actions (1.6ms)
+Rendered follow_queues/_list_record (5.0ms)
+Rendered follow_queues/_list (40.1ms)
+Completed in 99ms (View: 49, DB: 5) | 200 OK [http://localhost/accounts/nested/1?_method=get&associations=follow_queues&adapter=_list_inline_adapter]
+
+
+End of component rendering
+DEPRECATION WARNING: The binding argument of #concat is no longer needed.  Please remove it from your views and helpers.. (called from _run_rhtml_vendor47plugins47active_scaffold47frontends47default47views47_nested46rhtml_locals_nested_object at /Users/trevor/dev/hybrid/apps/followme/vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:40)
+Rendered _nested (139.5ms)
+Rendered _messages (0.2ms)
+Rendered _list_inline_adapter (3.1ms)
+Completed in 166ms (View: 5, DB: 0) | 200 OK [http://localhost/accounts/nested/1?_method=get&associations=follow_queues&adapter=_list_inline_adapter]
+  [4;35;1mSQL (0.3ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mAccountsToMonitor Columns (2.1ms)[0m   [0;1mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#index (for 127.0.0.1 at 2009-04-14 14:06:11) [GET]
+  [4;35;1mUser Columns (2.4ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM `accounts_to_monitors` WHERE (user_id = 2) [0m
+  [4;36;1mAccountsToMonitor Load (0.4ms)[0m   [0;1mSELECT `accounts_to_monitors`.* FROM `accounts_to_monitors` WHERE (user_id = 2) ORDER BY accounts_to_monitors.`id` ASC LIMIT 0, 15[0m
+Rendering template within layouts/accounts
+Rendering accounts/list
+Rendered _list_header (4.0ms)
+Rendered _list_column_headings (11.0ms)
+Rendered _messages (0.3ms)
+Rendered _list_actions (1.8ms)
+Rendered _list_record (7.9ms)
+Rendered _list (27.5ms)
+Completed in 149ms (View: 42, DB: 6) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (2.2ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#edit (for 127.0.0.1 at 2009-04-14 16:10:54) [GET]
+  Parameters: {"adapter"=>"_list_inline_adapter", "id"=>"1"}
+  [4;36;1mUser Columns (2.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (2.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAccountsToMonitor Load (0.3ms)[0m   [0;1mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 1) [0m
+Rendered _form_attribute (0.7ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.6ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.6ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form (19.5ms)
+Rendered _update_form (28.2ms)
+Rendered _messages (0.2ms)
+Rendered _list_inline_adapter (2.4ms)
+Completed in 58ms (View: 4, DB: 0) | 200 OK [http://localhost/accounts/edit/1?_method=get&adapter=_list_inline_adapter]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mAccountsToMonitor Columns (3.8ms)[0m   [0;1mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#update (for 127.0.0.1 at 2009-04-14 16:10:58) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"fe415b40f7b0a4246cc4771d81f523dabd57f3fb", "id"=>"1", "record"=>{"number_of_days_to_follow_back"=>"5", "ratio"=>"90", "trigger_unfollow_event"=>"true", "max_follows_per_hour"=>"25", "search_pages"=>"5", "search_language"=>"en", "username"=>"izeadev", "max_ratio"=>"105", "paused"=>"0", "search_term"=>"twitter", "min_tweets"=>"10", "min_followers"=>"10", "min_friends"=>"100", "password"=>"spatula5", "reserved_api_hits"=>"0"}}
+  [4;35;1mUser Columns (2.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAccountsToMonitor Load (0.3ms)[0m   [0mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 1) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mAccountsToMonitor Update (0.2ms)[0m   [0mUPDATE `accounts_to_monitors` SET `reserved_api_hits` = 0, `paused` = 0, `trigger_unfollow_event` = 1 WHERE `id` = 1[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mCOMMIT[0m
+Rendering accounts/on_update
+Rendered _messages (0.3ms)
+Completed in 125ms (View: 24, DB: 8) | 200 OK [http://localhost/accounts/update/1]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mAccountsToMonitor Columns (2.8ms)[0m   [0;1mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#row (for 127.0.0.1 at 2009-04-14 16:10:59) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Columns (2.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAccountsToMonitor Load (0.3ms)[0m   [0mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 1) [0m
+Rendered _list_actions (5.6ms)
+Rendered _list_record (13.5ms)
+Completed in 34ms (View: 16, DB: 6) | 200 OK [http://localhost/accounts/row/1?_method=get]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.1ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#index (for 127.0.0.1 at 2009-04-14 16:13:33) [GET]
+  [4;36;1mUser Columns (103.3ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM `accounts_to_monitors` WHERE (user_id = 2) [0m
+  [4;35;1mAccountsToMonitor Load (0.3ms)[0m   [0mSELECT `accounts_to_monitors`.* FROM `accounts_to_monitors` WHERE (user_id = 2) ORDER BY accounts_to_monitors.`id` ASC LIMIT 0, 15[0m
+Rendering template within layouts/accounts
+Rendering accounts/list
+Rendered _list_header (5.4ms)
+Rendered _list_column_headings (16.3ms)
+Rendered _messages (0.3ms)
+Rendered _list_actions (2.1ms)
+Rendered _list_record (9.2ms)
+Rendered _list (35.4ms)
+Completed in 181ms (View: 54, DB: 107) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.4ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#index (for 127.0.0.1 at 2009-04-14 16:13:40) [GET]
+  [4;36;1mUser Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.9ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM `accounts_to_monitors` WHERE (user_id = 2) [0m
+  [4;35;1mAccountsToMonitor Load (0.2ms)[0m   [0mSELECT `accounts_to_monitors`.* FROM `accounts_to_monitors` WHERE (user_id = 2) ORDER BY accounts_to_monitors.`id` ASC LIMIT 0, 15[0m
+Rendering template within layouts/accounts
+Rendering accounts/list
+Rendered _list_header (4.5ms)
+Rendered _list_column_headings (12.5ms)
+Rendered _messages (0.3ms)
+Rendered _list_actions (1.8ms)
+Rendered _list_record (7.6ms)
+Rendered _list (28.9ms)
+Completed in 68ms (View: 46, DB: 7) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (2.8ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#destroy (for 127.0.0.1 at 2009-04-14 16:14:59) [DELETE]
+  Parameters: {"authenticity_token"=>"fe415b40f7b0a4246cc4771d81f523dabd57f3fb", "id"=>"1"}
+  [4;36;1mUser Columns (3.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (2.7ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAccountsToMonitor Load (0.3ms)[0m   [0;1mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 1) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mAccountsToMonitor Destroy (0.2ms)[0m   [0;1mDELETE FROM `accounts_to_monitors` WHERE `id` = 1[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mCOMMIT[0m
+Rendering accounts/destroy.rjs
+Rendered _messages (0.2ms)
+Completed in 31ms (View: 7, DB: 11) | 200 OK [http://localhost/accounts/destroy/1?_method=delete&authenticity_token=fe415b40f7b0a4246cc4771d81f523dabd57f3fb]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.3ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#update_table (for 127.0.0.1 at 2009-04-14 16:15:00) [GET]
+  Parameters: {"authenticity_token"=>"fe415b40f7b0a4246cc4771d81f523dabd57f3fb", "page"=>"1"}
+  [4;36;1mUser Columns (2.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM `accounts_to_monitors` WHERE (user_id = 2) [0m
+  [4;35;1mAccountsToMonitor Load (0.2ms)[0m   [0mSELECT `accounts_to_monitors`.* FROM `accounts_to_monitors` WHERE (user_id = 2) ORDER BY accounts_to_monitors.`id` ASC LIMIT 0, 15[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT `accounts_to_monitors`.* FROM `accounts_to_monitors` WHERE (user_id = 2) ORDER BY accounts_to_monitors.`id` ASC LIMIT 0, 15[0m
+Rendered _list_column_headings (13.6ms)
+Rendered _messages (0.2ms)
+Rendered _list (19.7ms)
+Completed in 44ms (View: 23, DB: 6) | 200 OK [http://localhost/accounts/update_table?authenticity_token=fe415b40f7b0a4246cc4771d81f523dabd57f3fb&page=1]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mAccountsToMonitor Columns (3.0ms)[0m   [0;1mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#new (for 127.0.0.1 at 2009-04-14 16:18:40) [GET]
+  Parameters: {"adapter"=>"_list_inline_adapter"}
+  [4;35;1mUser Columns (2.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (1.2ms)
+Rendered _form_attribute (0.6ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (0.7ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (0.6ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form (18.9ms)
+Rendered _create_form (27.6ms)
+Rendered _messages (0.2ms)
+Rendered _list_inline_adapter (2.4ms)
+Completed in 73ms (View: 4, DB: 0) | 200 OK [http://localhost/accounts/new?_method=get&adapter=_list_inline_adapter]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mAccountsToMonitor Columns (3.2ms)[0m   [0;1mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#create (for 127.0.0.1 at 2009-04-14 16:19:07) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"fe415b40f7b0a4246cc4771d81f523dabd57f3fb", "record"=>{"number_of_days_to_follow_back"=>"1", "ratio"=>"90", "trigger_unfollow_event"=>"false", "max_follows_per_hour"=>"5", "search_pages"=>"5", "search_language"=>"en", "username"=>"izeadev", "max_ratio"=>"105", "paused"=>"0", "search_term"=>"blog", "min_tweets"=>"1000", "min_followers"=>"100", "min_friends"=>"100", "password"=>"spatula5", "reserved_api_hits"=>"10"}}
+  [4;35;1mUser Columns (2.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mAccountsToMonitor Exists (30.3ms)[0m   [0;1mSELECT `accounts_to_monitors`.id FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`username` = BINARY 'izeadev') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT `accounts_to_monitors`.id FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`username` = BINARY 'izeadev') LIMIT 1[0m
+  [4;36;1mAccountsToMonitor Create (0.4ms)[0m   [0;1mINSERT INTO `accounts_to_monitors` (`ratio`, `number_of_days_to_follow_back`, `max_follows_per_hour`, `trigger_unfollow_event`, `search_pages`, `username`, `search_language`, `max_ratio`, `search_term`, `paused`, `min_tweets`, `min_followers`, `min_friends`, `user_id`, `password`, `reserved_api_hits`) VALUES(90, 1, 5, 0, 5, 'izeadev', 'en', 105, 'blog', 0, 1000, 100, 100, 2, 'spatula5', 10)[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mCOMMIT[0m
+Rendering accounts/on_create
+Rendered _list_actions (5.6ms)
+Rendered _list_record (14.1ms)
+Rendered _messages (0.2ms)
+Completed in 81ms (View: 23, DB: 38) | 200 OK [http://localhost/accounts/create]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.2ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#edit (for 127.0.0.1 at 2009-04-14 16:21:39) [GET]
+  Parameters: {"authenticity_token"=>"fe415b40f7b0a4246cc4771d81f523dabd57f3fb", "adapter"=>"_list_inline_adapter", "id"=>"2"}
+  [4;36;1mUser Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAccountsToMonitor Load (0.2ms)[0m   [0;1mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 2) [0m
+Rendered _form_attribute (0.6ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.6ms)
+Rendered _form_attribute (0.7ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.6ms)
+Rendered _form_attribute (0.4ms)
+Rendered _form (18.6ms)
+Rendered _update_form (237.4ms)
+Rendered _messages (0.3ms)
+Rendered _list_inline_adapter (3.3ms)
+Completed in 262ms (View: 5, DB: 0) | 200 OK [http://localhost/accounts/edit/2?_method=get&authenticity_token=fe415b40f7b0a4246cc4771d81f523dabd57f3fb&adapter=_list_inline_adapter]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mAccountsToMonitor Columns (3.2ms)[0m   [0;1mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#row (for 127.0.0.1 at 2009-04-14 16:21:43) [GET]
+  Parameters: {"authenticity_token"=>"fe415b40f7b0a4246cc4771d81f523dabd57f3fb", "id"=>"2"}
+  [4;35;1mUser Columns (2.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAccountsToMonitor Load (0.3ms)[0m   [0mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 2) [0m
+Rendered _list_actions (4.4ms)
+Rendered _list_record (105.9ms)
+Completed in 131ms (View: 109, DB: 6) | 200 OK [http://localhost/accounts/row/2?_method=get&authenticity_token=fe415b40f7b0a4246cc4771d81f523dabd57f3fb]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (2.4ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#edit (for 127.0.0.1 at 2009-04-14 16:22:03) [GET]
+  Parameters: {"authenticity_token"=>"fe415b40f7b0a4246cc4771d81f523dabd57f3fb", "adapter"=>"_list_inline_adapter", "id"=>"2"}
+  [4;36;1mUser Columns (2.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (1.3ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAccountsToMonitor Load (0.3ms)[0m   [0;1mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 2) [0m
+Rendered _form_attribute (0.6ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form_attribute (0.6ms)
+Rendered _form_attribute (0.5ms)
+Rendered _form (19.5ms)
+Rendered _update_form (27.1ms)
+Rendered _messages (0.2ms)
+Rendered _list_inline_adapter (3.0ms)
+Completed in 56ms (View: 4, DB: 0) | 200 OK [http://localhost/accounts/edit/2?_method=get&authenticity_token=fe415b40f7b0a4246cc4771d81f523dabd57f3fb&adapter=_list_inline_adapter]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mAccountsToMonitor Columns (3.5ms)[0m   [0;1mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#update (for 127.0.0.1 at 2009-04-14 16:22:07) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"fe415b40f7b0a4246cc4771d81f523dabd57f3fb", "id"=>"2", "record"=>{"number_of_days_to_follow_back"=>"1", "ratio"=>"90", "trigger_unfollow_event"=>"true", "max_follows_per_hour"=>"5", "search_pages"=>"5", "search_language"=>"en", "username"=>"izeadev", "max_ratio"=>"105", "paused"=>"0", "search_term"=>"blog", "min_tweets"=>"1000", "min_followers"=>"100", "min_friends"=>"100", "password"=>"spatula5", "reserved_api_hits"=>"10"}}
+  [4;35;1mUser Columns (2.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAccountsToMonitor Load (0.3ms)[0m   [0mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 2) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mAccountsToMonitor Update (0.2ms)[0m   [0mUPDATE `accounts_to_monitors` SET `paused` = 0, `trigger_unfollow_event` = 1 WHERE `id` = 2[0m
+  [4;36;1mSQL (1.8ms)[0m   [0;1mCOMMIT[0m
+Rendering accounts/on_update
+Rendered _messages (0.3ms)
+Completed in 34ms (View: 5, DB: 9) | 200 OK [http://localhost/accounts/update/2?authenticity_token=fe415b40f7b0a4246cc4771d81f523dabd57f3fb]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mAccountsToMonitor Columns (3.3ms)[0m   [0;1mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#row (for 127.0.0.1 at 2009-04-14 16:22:07) [GET]
+  Parameters: {"authenticity_token"=>"fe415b40f7b0a4246cc4771d81f523dabd57f3fb", "id"=>"2"}
+  [4;35;1mUser Columns (2.1ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAccountsToMonitor Load (0.2ms)[0m   [0mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 2) [0m
+Rendered _list_actions (4.6ms)
+Rendered _list_record (11.6ms)
+Completed in 30ms (View: 14, DB: 7) | 200 OK [http://localhost/accounts/row/2?_method=get&authenticity_token=fe415b40f7b0a4246cc4771d81f523dabd57f3fb]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.3ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#index (for 127.0.0.1 at 2009-04-14 16:22:39) [GET]
+  [4;36;1mUser Columns (2.2ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM `accounts_to_monitors` WHERE (user_id = 2) [0m
+  [4;35;1mAccountsToMonitor Load (0.2ms)[0m   [0mSELECT `accounts_to_monitors`.* FROM `accounts_to_monitors` WHERE (user_id = 2) ORDER BY accounts_to_monitors.`id` ASC LIMIT 0, 15[0m
+Rendering template within layouts/accounts
+Rendering accounts/list
+Rendered _list_header (4.6ms)
+Rendered _list_column_headings (17.2ms)
+Rendered _messages (0.2ms)
+Rendered _list_actions (1.9ms)
+Rendered _list_record (10.1ms)
+Rendered _list (37.6ms)
+Completed in 76ms (View: 55, DB: 7) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccountsToMonitor Columns (3.4ms)[0m   [0mSHOW FIELDS FROM `accounts_to_monitors`[0m
+
+
+Processing AccountsController#nested (for 127.0.0.1 at 2009-04-14 16:22:45) [GET]
+  Parameters: {"associations"=>"follow_queues", "adapter"=>"_list_inline_adapter", "id"=>"2"}
+  [4;36;1mUser Columns (2.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAccountsToMonitor Load (0.3ms)[0m   [0;1mSELECT * FROM `accounts_to_monitors` WHERE (`accounts_to_monitors`.`id` = 2) [0m
+  [4;35;1mFollowQueue Columns (2.1ms)[0m   [0mSHOW FIELDS FROM `follow_queues`[0m
+DEPRECATION WARNING: render_component_as_string is deprecated and will be removed from Rails 2.3 (Please install render_component plugin from http://github.com/rails/render_component/tree/master). (called from __send__ at /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/components.rb:68)
+  [4;36;1mSQL (4.4ms)[0m   [0;1mSHOW TABLES[0m
+Start rendering component ({:params=>{:eid=>"188a2c92599a9eb6154abb7043aba1fe", :nested=>true, :parent_column=>"follow_queues", :parent_model=>AccountsToMonitor(id: integer, username: string, password: string, min_tweets: integer, min_followers: integer, min_friends: integer, search_term: string, ratio: integer, max_ratio: integer, reserved_api_hits: integer, number_of_days_to_follow_back: integer, paused: integer, search_pages: integer, max_follows_per_hour: integer, user_id: integer, search_language: string, trigger_unfollow_event: boolean)}, :action=>"table", :controller=>"follow_queues"}): 
+
+
+Processing FollowQueuesController#table (for 127.0.0.1 at 2009-04-14 16:22:45) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  Parameters: {"eid"=>"188a2c92599a9eb6154abb7043aba1fe", "parent_column"=>"follow_queues", "nested"=>true, "id"=>nil, "parent_model"=>AccountsToMonitor(id: integer, username: string, password: string, min_tweets: integer, min_followers: integer, min_friends: integer, search_term: string, ratio: integer, max_ratio: integer, reserved_api_hits: integer, number_of_days_to_follow_back: integer, paused: integer, search_pages: integer, max_follows_per_hour: integer, user_id: integer, search_language: string, trigger_unfollow_event: boolean)}
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSELECT count(*) AS count_all FROM `follow_queues` WHERE (follow_queues.accounts_to_monitor_id = '2' AND rejected = 0) [0m
+  [4;36;1mFollowQueue Load (0.5ms)[0m   [0;1mSELECT `follow_queues`.* FROM `follow_queues` WHERE (follow_queues.accounts_to_monitor_id = '2' AND rejected = 0) ORDER BY follow_queues.`id` ASC LIMIT 0, 15[0m
+Rendering follow_queues/list
+Rendered _list_header (1.9ms)
+Rendered _list_column_headings (8.9ms)
+Rendered _messages (0.2ms)
+Rendered _list_actions (2.7ms)
+Rendered _list_record (7.4ms)
+Rendered _list_actions (1.6ms)
+Rendered _list_record (4.9ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (4.6ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (5.3ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (4.7ms)
+Rendered _list_actions (1.5ms)
+Rendered _list_record (5.0ms)
+Rendered _list_actions (1.6ms)
+Rendered _list_record (4.5ms)
+Rendered _list_actions (1.7ms)
+Rendered _list_record (7.5ms)
+Rendered _list_actions (1.6ms)
+Rendered _list_record (4.9ms)
+Rendered _list_actions (1.6ms)
+Rendered _list_record (5.7ms)
+Rendered _list_actions (1.7ms)
+Rendered _list_record (4.7ms)
+Rendered _list_actions (1.7ms)
+Rendered _list_record (5.6ms)
+Rendered _list (83.5ms)
+Completed in 148ms (View: 96, DB: 8) | 200 OK [http://localhost/accounts/nested/2?_method=get&associations=follow_queues&adapter=_list_inline_adapter]
+
+
+End of component rendering
+DEPRECATION WARNING: The binding argument of #concat is no longer needed.  Please remove it from your views and helpers.. (called from _run_rhtml_vendor47plugins47active_scaffold47frontends47default47views47_nested46rhtml_locals_nested_object at /Users/trevor/dev/hybrid/apps/followme/vendor/plugins/active_scaffold/frontends/default/views/_nested.rhtml:40)
+Rendered _nested (188.3ms)
+Rendered _messages (0.2ms)
+Rendered _list_inline_adapter (2.6ms)
+Completed in 215ms (View: 4, DB: 0) | 200 OK [http://localhost/accounts/nested/2?_method=get&associations=follow_queues&adapter=_list_inline_adapter]

@@ -5,9 +5,13 @@ from helpers import *
 from twitter_functions import *
 from datetime import datetime
 from datetime import *; from dateutil.relativedelta import *
+from followme_scanner import ignore_duplicates, add_to_follow_queue
 
 def get_accounts_to_process():
 	return User.select()
+
+def get_accounts_flagged_for_mass_unfollow():
+	return User.select(User.q.trigger_unfollow_event == True)
 	
 def get_friends_from_queue(user):
 	friends = FollowQueue.select((FollowQueue.q.accounts_to_monitor_id == user.id) & (FollowQueue.q.followed_date == None) & (FollowQueue.q.followed_back_date == None) & (FollowQueue.q.rejected == 0))
@@ -58,6 +62,35 @@ def is_friend_following_me(user, friend):
 		return True
 	else:
 		return False
+		
+def unfollow_nonfollowers(user):
+	reset_api()
+	targets = []
+	my_friends = api.SocialGraphGetFriends(user=user.username)
+	my_followers = api.SocialGraphGetFollowers(user=user.username)
+	my_targets = [target for target in my_friends if target not in my_followers]
+	for target in my_targets:
+		if ignore_duplicates(None,user,target) == False:
+			try:
+				subject = api.GetUser(str(target))
+				api.SetCredentials(username=user.username, password=user.password)
+				api.DestroyFriendship(target)
+				add_to_follow_queue(subject,user.id, None, rejected=False, unfollowed=True)
+			except Exception, e:
+				print e
+				pass
+		else:
+			try:
+				friend = FollowQueue.select((FollowQueue.q.twitter_id == target) & (FollowQueue.q.accounts_to_monitor_id == user.id)).getOne()
+				api.SetCredentials(username=user.username, password=user.password)
+				api.DestroyFriendship(target)
+				friend.unfollowed = True
+				friend.set()
+			except Exception, e:
+				pass
+	user.trigger_unfollow_event = False
+	user.set()
+			
 
 def process_manual_unfollow(user):
 	friends = FollowQueue.select((FollowQueue.q.accounts_to_monitor_id == user.id) & (FollowQueue.q.followed_back_date != None) & (FollowQueue.q.unfollowed == 1))

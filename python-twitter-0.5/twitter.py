@@ -946,6 +946,9 @@ class Api(object):
       print "You must provide a username or id"
     else:
 	  url = 'http://twitter.com/friends/ids/%s.json' % user
+	  json = self._FetchUrl(url)
+	  data = simplejson.loads(json)
+	  return data
 	
   def GetRateLimitStatus(self):
 	url = "http://twitter.com/account/rate_limit_status.json"

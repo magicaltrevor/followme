@@ -3,7 +3,7 @@ class AccountsController < ApplicationController
   layout "accounts"
   MASTER_ACCOUNTS = [1]
   active_scaffold :accounts_to_monitor do |config|
-    config.columns = [:username, :password, :search_term, :search_pages, :search_language, :reserved_api_hits, :max_follows_per_hour, :min_friends, :min_followers, :min_tweets, :ratio, :max_ratio, :number_of_days_to_follow_back, :paused]
+    config.columns = [:username, :password, :search_term, :search_pages, :search_language, :reserved_api_hits, :max_follows_per_hour, :min_friends, :min_followers, :min_tweets, :ratio, :max_ratio, :number_of_days_to_follow_back, :trigger_unfollow_event, :paused]
     config.nested.add_link("Follower Queue", [:follow_queues])
     config.nested.add_link("Stats", [:stats])
     list.columns.exclude :password, :user_id
