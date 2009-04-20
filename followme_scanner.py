@@ -30,6 +30,7 @@ def autofollowscan(user):
 						else:
 							add_to_follow_queue(my_subject, user.id, rec['text'], rejected=True)
 					except Exception, e:
+						print e, status
 						pass
 				
 def user_pause_check(user):
@@ -41,9 +42,11 @@ def user_pause_check(user):
         for i in spans:
                 if i.has_key('id'):
                         if i['id'] == "follower_count":
-                                followers_count = int(i.contents[0])
+                                followers_count = i.contents[0].replace(",","")
                         if i['id'] == "following_count":
-                                friends_count = int(i.contents[0])
+                                friends_count = i.contents[0].replace(",","")
+		followers_count = int(followers_count)
+		friends_count = int(friends_count)
         new_stat = Stats(accounts_to_monitor_id=user.id,pass_date=datetime.now(),followers=followers_count,friends=friends_count)
         new_stat.set()
         if user.paused == 0:
@@ -57,11 +60,11 @@ def user_pause_check(user):
                 return True
 	
 
-def add_to_follow_queue(subject,user_id, tweet, rejected=False, unfollowed=False):
+def add_to_follow_queue(subject,user_id, my_tweet, rejected=False, unfollowed=False):
 	if rejected == True:
 		new_queue = FollowQueue(username=str(subject.screen_name),accounts_to_monitor_id=user_id,followed_date=None,rejected=rejected,followers=int(subject.followers_count),friends=int(subject.friends_count),tweets=int(subject.statuses_count),followed_back_date=None,unfollowed=unfollowed,twitter_id=subject.id,rejected_date=datetime.now(),tweet=None)
 	else:
-		new_queue = FollowQueue(username=str(subject.screen_name),accounts_to_monitor_id=user_id,followed_date=None,rejected=rejected,followers=int(subject.followers_count),friends=int(subject.friends_count),tweets=int(subject.statuses_count),followed_back_date=None,unfollowed=unfollowed,twitter_id=subject.id,rejected_date=None,tweet=tweet)
+		new_queue = FollowQueue(username=str(subject.screen_name),accounts_to_monitor_id=user_id,followed_date=None,rejected=rejected,followers=int(subject.followers_count),friends=int(subject.friends_count),tweets=int(subject.statuses_count),followed_back_date=None,unfollowed=unfollowed,twitter_id=subject.id,rejected_date=None,tweet=str(my_tweet))
 	new_queue.set()
 
 def ignore_duplicates(subject,user,twitter_id=None):
