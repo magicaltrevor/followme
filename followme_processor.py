@@ -64,6 +64,8 @@ def is_friend_following_me(user, friend):
 		return False
 		
 def unfollow_nonfollowers(user):
+	user.trigger_unfollow_event = False
+	user.set()
 	reset_api()
 	targets = []
 	my_friends = api.SocialGraphGetFriends(user=user.username)
@@ -88,8 +90,6 @@ def unfollow_nonfollowers(user):
 				friend.set()
 			except Exception, e:
 				pass
-	user.trigger_unfollow_event = False
-	user.set()
 			
 
 def process_manual_unfollow(user):

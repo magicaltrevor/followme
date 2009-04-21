@@ -5,6 +5,8 @@ from helpers import *
 from BeautifulSoup import BeautifulSoup
 from twitter_functions import *
 from datetime import datetime
+from django.utils.encoding import smart_str, smart_unicode
+
 PAUSE_RATIO = 10
 
 def get_accounts_to_monitor():
@@ -64,7 +66,7 @@ def add_to_follow_queue(subject,user_id, my_tweet, rejected=False, unfollowed=Fa
 	if rejected == True:
 		new_queue = FollowQueue(username=str(subject.screen_name),accounts_to_monitor_id=user_id,followed_date=None,rejected=rejected,followers=int(subject.followers_count),friends=int(subject.friends_count),tweets=int(subject.statuses_count),followed_back_date=None,unfollowed=unfollowed,twitter_id=subject.id,rejected_date=datetime.now(),tweet=None)
 	else:
-		new_queue = FollowQueue(username=str(subject.screen_name),accounts_to_monitor_id=user_id,followed_date=None,rejected=rejected,followers=int(subject.followers_count),friends=int(subject.friends_count),tweets=int(subject.statuses_count),followed_back_date=None,unfollowed=unfollowed,twitter_id=subject.id,rejected_date=None,tweet=str(my_tweet))
+		new_queue = FollowQueue(username=str(subject.screen_name),accounts_to_monitor_id=user_id,followed_date=None,rejected=rejected,followers=int(subject.followers_count),friends=int(subject.friends_count),tweets=int(subject.statuses_count),followed_back_date=None,unfollowed=unfollowed,twitter_id=subject.id,rejected_date=None,tweet=smart_str(my_tweet))
 	new_queue.set()
 
 def ignore_duplicates(subject,user,twitter_id=None):
