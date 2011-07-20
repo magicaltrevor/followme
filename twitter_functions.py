@@ -7,7 +7,7 @@ api = twitter.Api(username='sanitizeduser',password='sanitizedpassword')
 SEARCH_BASE = 'http://search.twitter.com/search.json'
 
 def reset_api():
-	api.SetCredentials(username='izeadev',password='spatula5')
+	api.SetCredentials(username='sanitizeduser',password='sanitizedpassword')
 	
 def overLimitCheck(api,user):
 	rateinfo = api.GetRateLimitStatus()
