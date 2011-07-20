@@ -3,7 +3,7 @@ import time
 from helpers import *
 import simplejson,urllib
 
-api = twitter.Api(username='izeadev',password='spatula5')
+api = twitter.Api(username='sanitizeduser',password='sanitizedpassword')
 SEARCH_BASE = 'http://search.twitter.com/search.json'
 
 def reset_api():
